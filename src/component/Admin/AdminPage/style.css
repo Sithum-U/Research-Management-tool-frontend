@@ -30,3 +30,8 @@
 .sticky + .content {
   padding-top: 60px;
 }
+
+.rounded-circle {
+  border-radius: 50%;
+  /* border: 1px solid black; */
+}

@@ -3,6 +3,9 @@ import Signup from "./component/Auth/SignUp/index";
 import Login from "./component/Auth/Login/index.jsx";
 import AdminPage from "./component/Admin/AdminPage/AdminPage";
 // import Sidebar from "./component/Admin/sidebar/sidebar";
+import Upload from "./component/Admin/pages/Upload";
+import Home from "./component/Admin/pages/Home";
+import "./App.css";
 
 function App() {
   return (
@@ -12,6 +15,8 @@ function App() {
         <Route path="/login" exact element={<Login />} />
         <Route path="/adminPage" exact element={<AdminPage />} />
         {/* <Route path="/sidebar" exact element={<Sidebar />} /> */}
+        <Route path="/upload" exact element={<Upload />} />
+        <Route path="/" exact element={<Home />} />
       </Routes>
     </BrowserRouter>
   );
