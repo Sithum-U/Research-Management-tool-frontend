@@ -58,8 +58,6 @@ export default function ClippedDrawer() {
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAPlAD2qUdnIjsdA7teiIQYuBq2arEkAhVBiQhkTClKun34iJ7VhM22ZYO277RirTV0qw&usqp=CAU"
                 alt="Avatar"
-                width="180"
-                height="180"
                 className="rounded-circle"
               />
 

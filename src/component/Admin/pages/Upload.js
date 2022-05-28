@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import Alert from "./Alert";
 import AdminPage from "../AdminPage/AdminPage";
+import styles from "./styles.module.css";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import BackupIcon from "@mui/icons-material/Backup";
+import Backup from "@mui/icons-material/Backup";
+import { Grid } from "@mui/material";
+import TextField from "@mui/material/TextField";
 
 export default function Upload() {
   const [fileInputState, setFileInputState] = useState("");
@@ -55,25 +62,44 @@ export default function Upload() {
   return (
     <div>
       <AdminPage />
-      <h1 className="title">Upload an Image</h1>
-      <Alert msg={errMsg} type="danger" />
-      <Alert msg={successMsg} type="success" />
-      <form onSubmit={handleSubmitFile} className="form">
-        <input
-          id="fileInput"
-          type="file"
-          name="image"
-          onChange={handleFileInputChange}
-          value={fileInputState}
-          className="form-input"
-        />
-        <button className="btn" type="submit">
-          Submit
-        </button>
-      </form>
-      {previewSource && (
-        <img src={previewSource} alt="chosen" style={{ height: "300px" }} />
-      )}
+      <div className={styles.signup_container}>
+        <div className={styles.signup_form_container}>
+          <div className={styles.right}>
+            <h1 className="title">Upload Presentation / Document Templates</h1>
+            <br />
+            <Alert msg={errMsg} type="danger" />
+            <Alert msg={successMsg} type="success" />
+            <form onSubmit={handleSubmitFile} className="form">
+              <Grid container spacing={2}>
+                <TextField
+                  id="fileInput"
+                  type="file"
+                  name="image"
+                  onChange={handleFileInputChange}
+                  value={fileInputState}
+                  className="form-input"
+                />
+                <Grid item xs={8}>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    endIcon={<Backup />}
+                  >
+                    Submit
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+            {previewSource && (
+              <img
+                src={previewSource}
+                alt="chosen"
+                style={{ height: "300px" }}
+              />
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
