@@ -1,7 +1,10 @@
 import React from "react";
+import PanelMember from "./component/panel_member/feedback";
 
 function App() {
-    return <h1>Hello world!</h1>
+    return (
+        <PanelMember/>
+    )
 }
 
 export default App;
