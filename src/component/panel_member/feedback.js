@@ -9,6 +9,10 @@ const PanelMember = () =>{
     const [viewShow, setViewShow] = useState(false);
     const handleViewShow = () =>{setViewShow(true)}
     const handleViewClose = () => {setViewShow(false)}
+    //add modal
+    const [viewPost, setPostShow] = useState(false);
+    const handlePostShow = () =>{setPostShow(true)}
+    const handlePostClose = () => {setPostShow(false)}
      //edit modal
     const [viewEdit, setEditShow] = useState(false);
     const handleEditShow = () =>{setEditShow(true)}
@@ -33,25 +37,25 @@ const PanelMember = () =>{
           });
       }, []);
 
-    //   const handleSubmit = () =>{
-    //     const url = 'http://localhost:8000/panelMember/'
-    //     const credentials = {studentGroup,feedback,note,email,status}
-    //     axios.post(url, credentials)
-    //     .then(response=>{
-    //         const result = response.data;
-    //         const {status, message} = result;
-    //         if(status !== 'SUCCESS'){
-    //             alert(message,status)
-    //         }
-    //         else{
-    //             alert(message);
-    //             window.location.reload();
-    //         }
-    //     })
-    //     .catch(err=>{
-    //         console.log(err);
-    //     })
-    //   }
+      const handleSubmit = () =>{
+        const url = 'http://localhost:8000/panelMember/'
+        const credentials = {studentGroup,feedback,note,email,status}
+        axios.post(url, credentials)
+        .then(response=>{
+            const result = response.data;
+            const {status, message} = result;
+            if(status !== 'SUCCESS'){
+                alert(message,status)
+            }
+            else{
+                alert(message);
+                window.location.reload();
+            }
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+      }
 
       const handleEdit = () =>{
         const url = `http://localhost:8000/panelMember/${id}`
@@ -76,7 +80,7 @@ const PanelMember = () =>{
         <div>
             <div className="row">
                 <div className="mt-5 mb-4">
-                   <Button variant="primary" ><i className="fa fa-plu"></i>
+                   <Button variant="primary" onClick={()=>{handlePostShow()}}><i className="fa fa-plu"></i>
                    Add New Feedback
                     </Button> 
                 </div>
@@ -160,7 +164,46 @@ const PanelMember = () =>{
                 
                 </Modal>
 
-                {/*Modal to edit the data to the database */}
+            {/*Modal to submit the data to the database */}
+            <div className="model-box-view">
+                <Modal 
+                    show={viewPost}
+                    onHide={handlePostClose}
+                    backdrop="static"
+                    keyboard={false}
+                    >
+                        <Modal.Header>
+                            <Modal.Title>Add Feedback Details</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <div>
+                                <div className="form-goup">
+                                    <input type="text" className="form-control" onChange={(e)=> setStudentGroup(e.target.value)} placeholder="Please enter Group Number"/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <input type="text" className="form-control" onChange={(e)=> setFeedback(e.target.value)} placeholder="Please enter Feedback"/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <input type="text" className="form-control" onChange={(e)=> setNote(e.target.value)} placeholder="Please enter Note"/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <input type="text" className="form-control" onChange={(e)=> setEmail(e.target.value)} placeholder="Please enter Emai"/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <input type="text" className="form-control" onChange={(e)=> setStatus(e.target.value)} placeholder="Please enter Status"/>
+                                </div>
+                                <Button type="submit" className="btn btn-success mt-4" onClick={handleSubmit}>Add Feedback</Button>
+                            </div>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handlePostClose}>Close</Button>
+                        </Modal.Footer>
+                
+                </Modal>
+
+            </div>
+
+            {/*Modal to edit the data to the database */}
             <div className="model-box-view">
                 <Modal 
                     show={viewEdit}
