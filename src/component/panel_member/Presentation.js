@@ -10,6 +10,10 @@ const Presentation = () =>{
     const [viewShow, setViewShow] = useState(false);
     const handleViewShow = () =>{setViewShow(true)}
     const handleViewClose = () => {setViewShow(false)}
+    //delete modal
+    const [viewDelete, setDeleteShow] = useState(false);
+    const handleDeleteShow = () =>{setDeleteShow(true)}
+    const handleDeleteClose = () => {setDeleteShow(false)}
 
     //defeine here local state that store the form data
     const [studentGroup,setStudentGroup] = useState("");
@@ -20,6 +24,10 @@ const Presentation = () =>{
     const [total,setTotal] = useState("");
     const [overoll,setOveroll] = useState("");
 
+    const [Delete,setDelete] = useState(false);
+    //Id for update record and delete
+    const [id,setId] = useState("");
+
     useEffect(() => {
         fetch("http://localhost:8000/presentation/")
          .then((res) => res.json())
@@ -28,6 +36,26 @@ const Presentation = () =>{
            //console.log(data);
          });
      }, []);
+
+     //handle delete function
+     const handleDelete = () =>{
+        const url = `http://localhost:8000/presentation/${id}`
+        axios.delete(url)
+        .then(response=>{
+            const result = response.data;
+            const {status, message} = result;
+            if(status !== 'SUCCESS'){
+                alert(message,status)
+            }
+            else{
+                alert(message);
+                window.location.reload();
+            }
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+      }
 
      return(
         <div>
@@ -75,7 +103,7 @@ const Presentation = () =>{
                                     <td>{item.total}</td>
                                     <td style={{minWidth:190}}>
                                         <Button size="sm" variant="primary" onClick={()=>{handleViewShow(setRowData(item))}}>View</Button>|
-                                        <Button size="sm" variant="danger">Delete</Button>
+                                        <Button size="sm" variant="danger" onClick={()=>{handleViewShow(setRowData(item), setId(item._id), setDelete(true))}}>Delete</Button>
                                     </td>
                                 </tr>
                               );
@@ -131,7 +159,7 @@ const Presentation = () =>{
                                     <label>Overall</label>
                                     <input type="text" className="form-control" value={RowData.overoll} readOnly/>
                                 </div>
-                                {/* {
+                                {
                                     Delete && (
                                         <div>
                                             <br/><br/>
@@ -139,7 +167,7 @@ const Presentation = () =>{
                                         <Button type="submit" className="btn btn-danger mt-4" onClick={handleDelete}>Yes</Button>
                                         </div>
                                     )
-                                } */}
+                                }
                             </div>
                         </Modal.Body>
                         <Modal.Footer>
