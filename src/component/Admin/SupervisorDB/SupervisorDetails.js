@@ -150,7 +150,7 @@ const style = {
   p: 4,
 };
 
-export default function ContractDetails() {
+export default function SupervisorDetails() {
   //modal code
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);

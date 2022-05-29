@@ -17,6 +17,10 @@ import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 
 const drawerWidth = 240;
 
@@ -86,8 +90,44 @@ export default function ClippedDrawer() {
             <Divider />
             <List>
               <center>
-                <Button variant="contained">Contained</Button>
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <Button variant="contained">Supervisor DB</Button>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button variant="contained">Co-Supervisor DB</Button>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button variant="contained">Student DB</Button>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <PopupState variant="popover" popupId="demo-popup-menu">
+                      {(popupState) => (
+                        <React.Fragment>
+                          <Button
+                            variant="contained"
+                            {...bindTrigger(popupState)}
+                          >
+                            Dashboard
+                          </Button>
+                          <Menu {...bindMenu(popupState)}>
+                            <MenuItem onClick={popupState.close}>
+                              Document Submission Evaluation
+                            </MenuItem>
+                            <MenuItem onClick={popupState.close}>
+                              Presentation Evaluation
+                            </MenuItem>
+                            <MenuItem onClick={popupState.close}>
+                              Final Thesis Evaluation
+                            </MenuItem>
+                          </Menu>
+                        </React.Fragment>
+                      )}
+                    </PopupState>
+                  </Grid>
+                </Grid>
               </center>
+
               {["Marking Schemas", "Presentation/Doc Templates", "Spam"].map(
                 (text, index) => (
                   <ListItem key={text} disablePadding>
