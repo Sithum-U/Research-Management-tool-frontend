@@ -17,6 +17,10 @@ const PanelMember = () =>{
     const [viewEdit, setEditShow] = useState(false);
     const handleEditShow = () =>{setEditShow(true)}
     const handleEditClose = () => {setEditShow(false)}
+    //delete modal
+    const [viewDelete, setDeleteShow] = useState(false);
+    const handleDeleteShow = () =>{setDeleteShow(true)}
+    const handleDeleteClose = () => {setDeleteShow(false)}
 
     //defeine here local state that store the form data
     const [studentGroup,setStudentGroup] = useState("");
@@ -25,6 +29,7 @@ const PanelMember = () =>{
     const [email,setEmail] = useState("");
     const [status,setStatus] = useState("");
 
+    const [Delete,setDelete] = useState(false);
     //Id for update record and delete
     const [id,setId] = useState("");
 
@@ -76,6 +81,26 @@ const PanelMember = () =>{
             console.log(err);
         })
       }
+
+      //handle delete function
+      const handleDelete = () =>{
+        const url = `http://localhost:8000/panelMember/${id}`
+        axios.delete(url)
+        .then(response=>{
+            const result = response.data;
+            const {status, message} = result;
+            if(status !== 'SUCCESS'){
+                alert(message,status)
+            }
+            else{
+                alert(message);
+                window.location.reload();
+            }
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+      }
   {  return (
         <div>
             <div className="row">
@@ -111,7 +136,7 @@ const PanelMember = () =>{
                                     <td style={{minWidth:190}}>
                                         <Button size="sm" variant="primary" onClick={()=>{handleViewShow(setRowData(item))}}>View</Button>
                                         <Button size="sm" variant="warning" onClick={()=>{handleEditShow(setRowData(item), setId(item._id))}}>Edit</Button>
-                                        <Button size="sm" variant="danger">Delete</Button>
+                                        <Button size="sm" variant="danger" onClick={()=>{handleViewShow(setRowData(item), setId(item._id), setDelete(true))}}>Delete</Button>
                                     </td>
                                 </tr>
                               );
@@ -151,11 +176,11 @@ const PanelMember = () =>{
                                 <div className="form-goup mt-3">
                                     <input type="text" className="form-control" value={RowData.status} readOnly/>
                                 </div>
-                                {/* {
+                                {
                                     Delete && (
                                         <Button type="submit" className="btn btn-danger mt-4" onClick={handleDelete}>Delete</Button>
                                     )
-                                } */}
+                                }
                             </div>
                         </Modal.Body>
                         <Modal.Footer>
