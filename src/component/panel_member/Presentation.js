@@ -10,6 +10,10 @@ const Presentation = () =>{
     const [viewShow, setViewShow] = useState(false);
     const handleViewShow = () =>{setViewShow(true)}
     const handleViewClose = () => {setViewShow(false)}
+    //add modal
+    const [viewPost, setPostShow] = useState(false);
+    const handlePostShow = () =>{setPostShow(true)}
+    const handlePostClose = () => {setPostShow(false)}
     //delete modal
     const [viewDelete, setDeleteShow] = useState(false);
     const handleDeleteShow = () =>{setDeleteShow(true)}
@@ -36,6 +40,26 @@ const Presentation = () =>{
            //console.log(data);
          });
      }, []);
+
+     const handleSubmit = () =>{
+        const url = 'http://localhost:8000/presentation/'
+        const credentials = {studentGroup,description,presentationSkills,correctness,content,total,overoll}
+        axios.post(url, credentials)
+        .then(response=>{
+            const result = response.data;
+            const {status, message} = result;
+            if(status !== 'SUCCESS'){
+                alert(message,status)
+            }
+            else{
+                alert(message);
+                window.location.reload();
+            }
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+      }
 
      //handle delete function
      const handleDelete = () =>{
@@ -80,7 +104,7 @@ const Presentation = () =>{
                 <h3>Marks For Presentations</h3>
             <div className="row">
                 <div className="mt-5 mb-4">
-                   <Button variant="primary"><i className="fa fa-plu"></i>
+                   <Button variant="primary" onClick={()=>{handlePostShow()}}><i className="fa fa-plu"></i>
                    Add New Presentation Mark
                     </Button> 
                 </div>
@@ -175,6 +199,51 @@ const Presentation = () =>{
                         </Modal.Footer>
                 
                 </Modal>
+            </div>
+
+            {/*Modal to submit the data to the database */}
+            <div className="model-box-view">
+                <Modal 
+                    show={viewPost}
+                    onHide={handlePostClose}
+                    backdrop="static"
+                    keyboard={false}
+                    >
+                        <Modal.Header>
+                            <Modal.Title>Add Presentation Marks</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <div>
+                                <div className="form-goup">
+                                    <input type="text" className="form-control" onChange={(e)=> setStudentGroup(e.target.value)} placeholder="Please enter Group Number"/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <input type="text" className="form-control" onChange={(e)=> setDescription(e.target.value)} placeholder="Please enter the description"/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <input type="text" className="form-control" onChange={(e)=> setPresentationSkills(e.target.value)} placeholder="Please enter Prsentation Skills Marks"/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <input type="text" className="form-control" onChange={(e)=> setCorrectness(e.target.value)} placeholder="Please enter Marks for Correctness"/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <input type="text" className="form-control" onChange={(e)=> setContent(e.target.value)} placeholder="Please enter Marks for Content"/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <input type="text" className="form-control" onChange={(e)=> setTotal(e.target.value)} placeholder="Please enter Total Mark"/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <input type="text" className="form-control" onChange={(e)=> setOveroll(e.target.value)} placeholder="Please enter Overoll"/>
+                                </div>
+                                <Button type="submit" className="btn btn-success mt-4" onClick={handleSubmit}>Add Feedback</Button>
+                            </div>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handlePostClose}>Close</Button>
+                        </Modal.Footer>
+                
+                </Modal>
+
             </div>
         </div>
      );
