@@ -101,7 +101,7 @@ const PanelMember = () =>{
             console.log(err);
         })
       }
-  {  return (
+    return (
         <div>
         <div className="container">
             <div className="row">
@@ -298,7 +298,7 @@ const PanelMember = () =>{
             </div>
         </div>
         </div>
-    );}
+    );
 };
 
 export default PanelMember;
