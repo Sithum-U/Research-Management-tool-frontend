@@ -21,6 +21,8 @@ import Grid from "@mui/material/Grid";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
+import StorageIcon from "@mui/icons-material/Storage";
 
 const drawerWidth = 240;
 
@@ -90,7 +92,9 @@ export default function ClippedDrawer() {
             <Divider />
             <List>
               <center>
-                <Grid container spacing={2}>
+                <br />
+                <br />
+                <Grid container spacing={4}>
                   <Grid item xs={12}>
                     <Button variant="contained">Supervisor DB</Button>
                   </Grid>
@@ -108,7 +112,7 @@ export default function ClippedDrawer() {
                             variant="contained"
                             {...bindTrigger(popupState)}
                           >
-                            Dashboard
+                            Submission Types <ArrowDropDownCircleIcon />
                           </Button>
                           <Menu {...bindMenu(popupState)}>
                             <MenuItem onClick={popupState.close}>
