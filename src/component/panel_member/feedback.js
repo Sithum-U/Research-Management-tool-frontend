@@ -103,6 +103,25 @@ const PanelMember = () =>{
       }
   {  return (
         <div>
+        <div className="container">
+            <div className="row">
+            <nav className="navbar navbar-light bg-light">
+                <span className="navbar-brand mb-0 h1">Panel Member</span>
+            </nav>
+            <br/><br/>
+            <div className="card">
+                        <h5 className="card-header">Search Filter</h5>
+                        <div className="d-flex justify-content-between align-items-center mx-50 row pt-0 pb-2">
+                            <div className="col-md-4 user_role"></div>
+                            <div className="col-md-4 user_plan"></div>
+                            <div className="col-md-4 user_status"></div>
+                        </div>
+            </div>
+            <br/><br/><br/><br/>
+            <hr/>
+            <div className="card">
+                <div className="card-body">
+                <h3>Feedback's For the Student's Topic Evaluation</h3>
             <div className="row">
                 <div className="mt-5 mb-4">
                    <Button variant="primary" onClick={()=>{handlePostShow()}}><i className="fa fa-plu"></i>
@@ -110,10 +129,9 @@ const PanelMember = () =>{
                     </Button> 
                 </div>
             </div>
-            <div className="row">
                 <div className="table-responsive">
                     <table className="table table-striped table-hover table-bordered">
-                        <thead>
+                        <thead className="thead-dark">
                             <tr>
                                 <th>Student Group</th>
                                 <th>Feedback</th>
@@ -134,8 +152,8 @@ const PanelMember = () =>{
                                     <td>{item.email}</td>
                                     <td>{item.status}</td>
                                     <td style={{minWidth:190}}>
-                                        <Button size="sm" variant="primary" onClick={()=>{handleViewShow(setRowData(item))}}>View</Button>
-                                        <Button size="sm" variant="warning" onClick={()=>{handleEditShow(setRowData(item), setId(item._id))}}>Edit</Button>
+                                        <Button size="sm" variant="primary" onClick={()=>{handleViewShow(setRowData(item))}}>View</Button>|
+                                        <Button size="sm" variant="warning" onClick={()=>{handleEditShow(setRowData(item), setId(item._id))}}>Edit</Button>|
                                         <Button size="sm" variant="danger" onClick={()=>{handleViewShow(setRowData(item), setId(item._id), setDelete(true))}}>Delete</Button>
                                     </td>
                                 </tr>
@@ -147,6 +165,8 @@ const PanelMember = () =>{
 
                     </table>
                 </div>
+                </div>
+            </div>
             </div>
             {/*Model to view button */}
             <div className="model-box-view">
@@ -178,7 +198,11 @@ const PanelMember = () =>{
                                 </div>
                                 {
                                     Delete && (
-                                        <Button type="submit" className="btn btn-danger mt-4" onClick={handleDelete}>Delete</Button>
+                                        <div>
+                                            <br/><br/>
+                                        <p>Are You Sure, Do you need to delete this?</p>
+                                        <Button type="submit" className="btn btn-danger mt-4" onClick={handleDelete}>Yes</Button>
+                                        </div>
                                     )
                                 }
                             </div>
@@ -242,23 +266,23 @@ const PanelMember = () =>{
                         <Modal.Body>
                             <div>
                                 <div className="form-goup">
-                                    <label>Name</label>
+                                    <label>Student Group</label>
                                     <input type="text" className="form-control" onChange={(e)=> setStudentGroup(e.target.value)} defaultValue={RowData.studentGroup}/>
                                 </div>
                                 <div className="form-goup mt-3">
-                                    <label>Email</label>
+                                    <label>Feedback</label>
                                     <input type="text" className="form-control" onChange={(e)=> setFeedback(e.target.value)} defaultValue={RowData.feedback}/>
                                 </div>
                                 <div className="form-goup mt-3">
-                                    <label>Number</label>
+                                    <label>Email</label>
                                     <input type="text" className="form-control" onChange={(e)=> setEmail(e.target.value)} defaultValue={RowData.email}/>
                                 </div>
                                 <div className="form-goup mt-3">
-                                    <label>NIC</label>
+                                    <label>Note</label>
                                     <input type="text" className="form-control" onChange={(e)=> setNote(e.target.value)} defaultValue={RowData.note}/>
                                 </div>
                                 <div className="form-goup mt-3">
-                                    <label>Address</label>
+                                    <label>Status</label>
                                     <input type="text" className="form-control" onChange={(e)=> setStatus(e.target.value)} defaultValue={RowData.status}/>
                                 </div>
                                 <Button type="submit" className="btn btn-warning mt-4" onClick={handleEdit}>Edit Feedback</Button>
@@ -272,6 +296,7 @@ const PanelMember = () =>{
 
             </div>
             </div>
+        </div>
         </div>
     );}
 };
