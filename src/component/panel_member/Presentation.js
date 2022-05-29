@@ -5,6 +5,21 @@ import axios from 'axios'
 const Presentation = () =>{
     const [presentation, setpresentation] = useState([]);
 
+    //view modal
+    const [RowData,setRowData] = useState([]);
+    const [viewShow, setViewShow] = useState(false);
+    const handleViewShow = () =>{setViewShow(true)}
+    const handleViewClose = () => {setViewShow(false)}
+
+    //defeine here local state that store the form data
+    const [studentGroup,setStudentGroup] = useState("");
+    const [description,setDescription] = useState("");
+    const [presentationSkills,setPresentationSkills] = useState("");
+    const [correctness,setCorrectness] = useState("");
+    const [content,setContent] = useState("");
+    const [total,setTotal] = useState("");
+    const [overoll,setOveroll] = useState("");
+
     useEffect(() => {
         fetch("http://localhost:8000/presentation/")
          .then((res) => res.json())
@@ -47,11 +62,8 @@ const Presentation = () =>{
                         <thead className="thead-dark">
                             <tr>
                                 <th>Student Group</th>
-                                <th>Presentation Skills</th>
-                                <th>Correctness</th>
-                                <th>Content</th>
                                 <th>Total</th>
-                                <th>Overall</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,13 +72,9 @@ const Presentation = () =>{
                               return (
                                 <tr key={item._id}>
                                     <td>{item.studentGroup}</td>
-                                    <td>{item.presentationSkills}</td>
-                                    <td>{item.correctness}</td>
-                                    <td>{item.content}</td>
                                     <td>{item.total}</td>
-                                    <td>{item.overoll}</td>
                                     <td style={{minWidth:190}}>
-                                        <Button size="sm" variant="primary">View</Button>|
+                                        <Button size="sm" variant="primary" onClick={()=>{handleViewShow(setRowData(item))}}>View</Button>|
                                         <Button size="sm" variant="danger">Delete</Button>
                                     </td>
                                 </tr>
@@ -81,6 +89,64 @@ const Presentation = () =>{
                 </div>
             </div>
             </div>
+            </div>
+            {/*Model to view button */}
+            <div className="model-box-view">
+                <Modal 
+                    show={viewShow}
+                    onHide={handleViewClose}
+                    backdrop="static"
+                    keyboard={false}
+                    >
+                        <Modal.Header>
+                            <Modal.Title>View Presentation Marks</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <div>
+                                <div className="form-goup">
+                                    <label>Student Group</label>
+                                    <input type="text" className="form-control" value={RowData.studentGroup} readOnly/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <label>Description</label>
+                                    <input type="text" className="form-control" value={RowData.description} readOnly/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <label>Presentation Skills Marks</label>
+                                    <input type="text" className="form-control" value={RowData.presentationSkills} readOnly/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <label>Correctness</label>
+                                    <input type="text" className="form-control" value={RowData.correctness} readOnly/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <label>Content</label>
+                                    <input type="text" className="form-control" value={RowData.content} readOnly/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <label>Content</label>
+                                    <input type="text" className="form-control" value={RowData.total} readOnly/>
+                                </div>
+                                <div className="form-goup mt-3">
+                                    <label>Overall</label>
+                                    <input type="text" className="form-control" value={RowData.overoll} readOnly/>
+                                </div>
+                                {/* {
+                                    Delete && (
+                                        <div>
+                                            <br/><br/>
+                                        <p>Are You Sure, Do you need to delete this?</p>
+                                        <Button type="submit" className="btn btn-danger mt-4" onClick={handleDelete}>Yes</Button>
+                                        </div>
+                                    )
+                                } */}
+                            </div>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleViewClose}>Close</Button>
+                        </Modal.Footer>
+                
+                </Modal>
             </div>
         </div>
      );

@@ -212,7 +212,7 @@ const PanelMember = () =>{
                         </Modal.Footer>
                 
                 </Modal>
-
+            </div>
             {/*Modal to submit the data to the database */}
             <div className="model-box-view">
                 <Modal 
@@ -294,7 +294,6 @@ const PanelMember = () =>{
                 
                 </Modal>
 
-            </div>
             </div>
         </div>
         </div>
