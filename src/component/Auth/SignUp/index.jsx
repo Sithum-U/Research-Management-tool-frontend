@@ -106,6 +106,7 @@ const Signup = () => {
                 type="role"
                 name="role"
                 onChange={handleChange}
+                className={styles.input}
               >
                 <MenuItem value={10}>Student</MenuItem>
                 <MenuItem value={20}>Staff</MenuItem>
