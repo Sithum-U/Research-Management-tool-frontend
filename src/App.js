@@ -8,6 +8,7 @@ import Home from "./component/Admin/pages/Home";
 import SupervisorDetails from "./component/Admin/SupervisorDB/SupervisorDetails";
 import CoSupervisorDetails from "./component/Admin/CoSupervisorDB/CoSupervisorDetails";
 import StudentDetails from "./component/Admin/StudentDB/StudentDetails";
+import PanelMemberDetails from "./component/Admin/PanelMember/PanelMember";
 import "./App.css";
 
 function App() {
@@ -31,6 +32,11 @@ function App() {
           element={<CoSupervisorDetails />}
         />
         <Route path="/studentDetails" exact element={<StudentDetails />} />
+        <Route
+          path="/panelMemberDetails"
+          exact
+          element={<PanelMemberDetails />}
+        />
       </Routes>
     </BrowserRouter>
   );

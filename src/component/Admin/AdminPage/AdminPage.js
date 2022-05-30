@@ -120,6 +120,14 @@ export default function ClippedDrawer() {
                     </Link>
                   </Grid>
                   <Grid item xs={12}>
+                    <Link
+                      to="/panelMemberDetails"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Button variant="contained">Panel Member DB</Button>
+                    </Link>
+                  </Grid>
+                  <Grid item xs={12}>
                     <PopupState variant="popover" popupId="demo-popup-menu">
                       {(popupState) => (
                         <React.Fragment>

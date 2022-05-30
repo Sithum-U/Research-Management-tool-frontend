@@ -230,7 +230,7 @@ export default function BranchDetails() {
       <AdminPage />
       <div className={classes.root2}>
         <Typography variant="h4" gutterBottom>
-          Co-Supervisor Details
+          Panel Member Details
           {/* <Avatar className={classes.green}>
         <AssignmentIcon />
       </Avatar> */}
