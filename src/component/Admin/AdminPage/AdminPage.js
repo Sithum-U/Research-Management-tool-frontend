@@ -96,10 +96,20 @@ export default function ClippedDrawer() {
                 <br />
                 <Grid container spacing={4}>
                   <Grid item xs={12}>
-                    <Button variant="contained">Supervisor DB</Button>
+                    <Link
+                      to="/supervisorDetails"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Button variant="contained">Supervisor DB</Button>
+                    </Link>
                   </Grid>
                   <Grid item xs={12}>
-                    <Button variant="contained">Co-Supervisor DB</Button>
+                    <Link
+                      to="/co-supervisorDetails"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Button variant="contained">Co-Supervisor DB</Button>
+                    </Link>
                   </Grid>
                   <Grid item xs={12}>
                     <Button variant="contained">Student DB</Button>
