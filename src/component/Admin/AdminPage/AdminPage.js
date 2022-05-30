@@ -34,7 +34,7 @@ export default function ClippedDrawer() {
           Hotel.lk
         </a>
         <a href="/login">Logout</a>
-        <Link to="/login">Sign In</Link>
+        <Link to="/signup">Sign In</Link>
         <Link to="/">Register</Link>
         <Link to="/upload">Reserve</Link>
         <Link to="/taxi">Taxis</Link>
