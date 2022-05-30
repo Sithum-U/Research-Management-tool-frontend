@@ -112,7 +112,12 @@ export default function ClippedDrawer() {
                     </Link>
                   </Grid>
                   <Grid item xs={12}>
-                    <Button variant="contained">Student DB</Button>
+                    <Link
+                      to="/studentDetails"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Button variant="contained">Student DB</Button>
+                    </Link>
                   </Grid>
                   <Grid item xs={12}>
                     <PopupState variant="popover" popupId="demo-popup-menu">

@@ -7,6 +7,7 @@ import Upload from "./component/Admin/pages/Upload";
 import Home from "./component/Admin/pages/Home";
 import SupervisorDetails from "./component/Admin/SupervisorDB/SupervisorDetails";
 import CoSupervisorDetails from "./component/Admin/CoSupervisorDB/CoSupervisorDetails";
+import StudentDetails from "./component/Admin/StudentDB/StudentDetails";
 import "./App.css";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           exact
           element={<CoSupervisorDetails />}
         />
+        <Route path="/studentDetails" exact element={<StudentDetails />} />
       </Routes>
     </BrowserRouter>
   );
