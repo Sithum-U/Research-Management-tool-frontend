@@ -1,13 +1,13 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import Main from "./components/Main";
-import Signup from "./components/SignUp";
-import Login from "./components/Login";
-import User from "./components/User";
-import Admin from "./components/Admin";
-import Dashboard from "./components/Admin/dashboard";
-import Docsubmit from "./components/Admin/docsubmit";
-import Create from "./components/Admin/creategroup";
-import Findtopic from "./components/Admin/findtopic";
+import Main from "./component/Main";
+import Signup from "./component/SignUp";
+import Login from "./component/Login";
+import User from "./component/User";
+import Admin from "./component/Student";
+import Dashboard from "./component/Student/dashboard";
+import Docsubmit from "./component/Student/docsubmit";
+import Create from "./component/Student/creategroup";
+import Findtopic from "./component/Student/findtopic";
 
 function App() {
   const user = localStorage.getItem("token");

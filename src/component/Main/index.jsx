@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 import { makeStyles } from "@material-ui/core/styles";
 import "../Main/styles.css";
 import Hotel from "../Home";
-import hotelDetails from "../../hotelDetails";
+// import hotelDetails from "../../hotelDetails";
 import "./styles.css";
 import footer from "../footer";
 // import Taxi from "../Taxis/taxi";
@@ -95,9 +95,8 @@ const Main = () => {
         <a href="/login">Logout</a>
         <Link to="/login">Sign In</Link>
         <Link to="/signup">Register</Link>
-        <Link to="/reservation">Reserve</Link>
-        <Link to="/taxi">Taxis</Link>
-        <Link to="/Payment">RP Management</Link>
+        <Link to="/find">Reserve</Link>
+        
 
         <a class="active" href="#home">
           {" "}
