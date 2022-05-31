@@ -13,7 +13,7 @@ function Login() {
     e.preventDefault();
     console.log("hello");
     try {
-      const res = await fetch("", {
+      const res = await fetch("http://localhost:8000/api/auth/login", {
         method: "POST",
         body: JSON.stringify({
           username: username,
@@ -27,7 +27,7 @@ function Login() {
 
       if (data.message == "Login successful") {
         if (data.user.role == "admin") {
-          window.location.href = "/";
+          window.location.href = "/adminPanel";
         } else if (data.user.role == "student") {
           window.location.href = "/";
           console.log(data);
