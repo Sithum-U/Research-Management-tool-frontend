@@ -33,29 +33,29 @@ import AdminPage from "../AdminPage/AdminPage";
 
 const columns = [
   {
-    id: "branchName",
-    label: "Branch Name",
+    id: "name",
+    label: "Panel Member Name",
     minWidth: 100,
     align: "center",
     main: "#f44336",
   },
   {
-    id: "registereddatel",
-    label: "Register Date",
+    id: "position",
+    label: "Position",
     minWidth: 170,
     align: "center",
     // format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: "branchTell",
-    label: "Branch Tell NO",
+    id: "mobile",
+    label: "Mobile NO",
     minWidth: 170,
     align: "center",
     // format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: "description",
-    label: "Description",
+    id: "email",
+    label: "Email",
     minWidth: 170,
     align: "center",
     // format: (value) => value.toLocaleString('en-US'),
@@ -96,18 +96,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BranchDetails() {
-  const [branch, setBranch] = useState([]);
+export default function PanelMemberDetails() {
+  const [panelmember, setPanelmember] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filtered, setfiltered] = useState([]);
-  const [branchName, setbranchName] = useState([]);
+  const [pmemberName, setpmemberName] = useState([]);
 
-  //This useEffect function used to get all contract's data
+  //This useEffect function used to get all panel Member's data
   useEffect(() => {
-    fetch("http://localhost:9000/branch/")
+    fetch("http://localhost:8000/panel/")
       .then((res) => res.json())
       .then((data) => {
-        setBranch(data);
+        setPanelmember(data);
       });
   }, []);
 
@@ -134,7 +134,7 @@ export default function BranchDetails() {
               theme: "dark",
               useTransparency: true,
               onOk: function () {
-                window.location = "/branchDetails";
+                // window.location = "/branchDetails";
               },
             });
           }
@@ -192,11 +192,11 @@ export default function BranchDetails() {
   const generatePDF = (tickets) => {
     const doc = new jspdf();
     const tableColumn = [
-      "Branch ID",
-      "Branch Name",
-      "Registered Date",
-      "Branch Tell",
-      "Description",
+      "Panel Member ID",
+      "Panel Member Name",
+      "Position",
+      "Mobile",
+      "Email",
     ];
     const tableRows = [];
     const date = Date().split(" ");
@@ -205,15 +205,15 @@ export default function BranchDetails() {
     tickets.map((ticket) => {
       const ticketData = [
         ticket._id,
-        ticket.branchName,
-        ticket.registereddate,
-        ticket.branchTell,
-        ticket.description,
+        ticket.name,
+        ticket.position,
+        ticket.mobile,
+        ticket.email,
       ];
       tableRows.push(ticketData);
     });
-    doc.text("WICKRAMA SUPER PLC", 70, 8).setFontSize(13);
-    doc.text("Branch Details Report", 14, 16).setFontSize(13);
+    doc.text("Research Management Tool", 70, 8).setFontSize(13);
+    doc.text("Panel Member Detailed Report", 14, 16).setFontSize(13);
     doc.text(`Report Genarated Date - ${dateStr}`, 14, 23);
     //right down width height
     doc.addImage(img, "JPEG", 170, 8, 25, 25);
@@ -222,7 +222,7 @@ export default function BranchDetails() {
       startY: 35,
     });
     doc.addImage(img1, "JPEG", 120, 140, 70, 40);
-    doc.save("Branch Details Report.pdf");
+    doc.save("PanelMember Detailed Report.pdf");
   };
 
   return (
@@ -239,7 +239,7 @@ export default function BranchDetails() {
           <button
             type="button"
             class="btn btn-secondary btn-sm"
-            onClick={() => generatePDF(branch)}
+            onClick={() => generatePDF(panelmember)}
           >
             GenerateReport
           </button>{" "}
@@ -274,29 +274,29 @@ export default function BranchDetails() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {branch
+                {panelmember
                   .filter((value) => {
                     if (searchTerm === "") {
                       return value;
                     } else if (
-                      value.branchName
+                      value.pmemberName
                         .toLowerCase()
                         .includes(searchTerm.toLowerCase())
                     ) {
                       return value;
                     }
                   })
-                  .map((bran, i) => (
+                  .map((pm, i) => (
                     // {supplier !=0 ? supplier.map((supp)=>{
                     //   return (
-                    <TableRow key={bran._id}>
-                      <TableCell>{bran.branchName}</TableCell>
-                      <TableCell>{bran.registereddate}</TableCell>
-                      <TableCell>{bran.branchTell}</TableCell>
-                      <TableCell>{bran.description}</TableCell>
+                    <TableRow key={pm._id}>
+                      <TableCell>{pm.name}</TableCell>
+                      <TableCell>{pm.position}</TableCell>
+                      <TableCell>{pm.mobile}</TableCell>
+                      <TableCell>{pm.email}</TableCell>
                       <TableCell>
                         <Link
-                          to={"/updateBranch/" + bran._id}
+                          to={"/updateBranch/" + pm._id}
                           type="submit"
                           class="btn btn-primary"
                         >
@@ -308,7 +308,7 @@ export default function BranchDetails() {
                           type="submit"
                           class="btn btn-danger"
                           onClick={(e) => {
-                            delet(bran._id);
+                            delet(pm._id);
                           }}
                         >
                           <i class="fa fa-trash"></i> DELETE
