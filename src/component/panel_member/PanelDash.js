@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 'mdb-react-ui-kit';
-import './App.css';
+import Footer from "../Footer";
 
 const PanelDash = () => {
     return (
         <div style={{backgroundColor:'#83a4d4'}}>
             <div className="container">
+                <br/><br/>
             <h3 className="bg-dark text-white p-3">Welcome to the Panel Member Dashboard</h3><br/><br/><br/><br/>
             <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
                 <MDBCol>
@@ -18,9 +19,9 @@ const PanelDash = () => {
                             position='top'
                         />
                         <MDBCardBody>
-                            <MDBCardTitle>Panel Member Registration</MDBCardTitle>
+                            <MDBCardTitle>Send Mail</MDBCardTitle>
                             <MDBCardText>
-                                <Link to="/">
+                                <Link to="/mail">
                                     <Button variant="primary">Go</Button>
                                 </Link>
                             </MDBCardText>
@@ -64,6 +65,7 @@ const PanelDash = () => {
             </MDBRow>
             </div>
             <br/><br/><br/><br/><br/><br/><br/>
+            <Footer/>
         </div>
         
     );

@@ -89,11 +89,13 @@ const Presentation = () => {
     return (
         <div style={{ backgroundColor: '#83a4d4' }}>
             <div className="container">
+            <br/><br/>
                 <h3 className="bg-dark text-white p-3">Panel Member</h3><br />
-                <h3 className="bg-ligh text-dark p-3">Marks For Presentations</h3>
+                <h2 className="bg-ligh text-dark p-3">Marks For Presentations</h2>
                 <MDBCard shadow='0' border='info' background='white' >
                     <MDBCardBody>
                         <MDBCardText>
+                            <h4>Search your Group Number</h4>
                             <input type="text" placeholder="Search..." onChange={e => { setSearch(e.target.value) }} />
                         </MDBCardText>
                     </MDBCardBody>
@@ -118,6 +120,7 @@ const Presentation = () => {
                                                 }
                                             }).map((item) => {
                                                 return (
+                                                    <div>
                                                     <MDBCol key={item._id}>
                                                         <MDBCard border='success' background='white'>
                                                             <MDBCardBody>
@@ -130,6 +133,8 @@ const Presentation = () => {
                                                             </MDBCardBody>
                                                         </MDBCard>
                                                     </MDBCol>
+                                                    <br/>
+                                                    </div>
                                                 );
                                             })
                                             : <div></div>}
