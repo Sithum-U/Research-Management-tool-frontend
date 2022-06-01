@@ -27,9 +27,9 @@ function Login() {
 
       if (data.message == "Login successful") {
         if (data.user.role == "admin") {
-          window.location.href = "/adminPanel";
-        } else if (data.user.role == "student") {
-          window.location.href = "/";
+          window.location.href = "/adminPage";
+        } else if (data.user.role == "supervisor") {
+          window.location.href = "/adminPage";
           console.log(data);
         }
       } else {

@@ -198,14 +198,18 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import NativeSelect from "@mui/material/NativeSelect";
 
-const Signup = () => {
+const Signup = (props) => {
   const [data, setData] = useState({
     username: "",
     password: "",
     email: "",
     phone: "",
     role: "",
+    researchField: "",
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -310,6 +314,51 @@ const Signup = () => {
               required
               className={styles.input}
             />
+
+            {/* <FormControl fullWidth>
+              <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                Select Your Role
+              </InputLabel>
+              <NativeSelect
+                defaultValue="Student"
+                onChange={handleChange}
+                value={data.role}
+                name="role"
+                inputProps={{
+                  name: "role",
+                  id: "uncontrolled-native",
+                }}
+                className={styles.input}
+              >
+                <option name="role" value="student">
+                  Student
+                </option>
+                <option name="role" value="supervisor">
+                  Supervisor
+                </option>
+                <option name="role" value="cosupervisor">
+                  Co-Supervisor
+                </option>
+                <option name="role" value="panelmember">
+                  Panel Member
+                </option>
+                <option name="role" value="admin">
+                  Co-Admin
+                </option>
+              </NativeSelect>
+            </FormControl> */}
+            {data.role == "admin" ? (
+              <input
+                type="researchField"
+                placeholder="Research Field"
+                name="researchField"
+                onChange={handleChange}
+                value={data.researchField}
+                required
+                className={styles.input}
+              />
+            ) : null}
+
             {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.green_btn}>
               Sign Up
