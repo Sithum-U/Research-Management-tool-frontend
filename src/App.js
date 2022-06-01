@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Signup from "./component/Auth/SignUp/index";
 import Login from "./component/Auth/Login/index.jsx";
 import AdminPage from "./component/Admin/AdminPage/AdminPage";
@@ -8,8 +8,12 @@ import Home from "./component/Admin/pages/Home";
 import SupervisorDetails from "./component/Admin/SupervisorDB/SupervisorDetails";
 import CoSupervisorDetails from "./component/Admin/CoSupervisorDB/CoSupervisorDetails";
 import StudentDetails from "./component/Admin/StudentDB/StudentDetails";
-import PanelMemberDetails from "./component/Admin/PanelMember/PanelMember";
+import PanelMemberDetails from "./component/Admin/PanelMemberDB/PanelMember";
 import "./App.css";
+
+import AppRouter from "../src/component/Admin/FileUpload/AppRouter";
+import Header from "../src/component/Admin/FileUpload/Header";
+import FilesList from "../src/component/Admin/FileUpload/FilesList";
 
 function App() {
   return (
@@ -19,8 +23,8 @@ function App() {
         <Route path="/login" exact element={<Login />} />
         <Route path="/adminPage" exact element={<AdminPage />} />
         {/* <Route path="/sidebar" exact element={<Sidebar />} /> */}
-        <Route path="/upload" exact element={<Upload />} />
-        <Route path="/" exact element={<Home />} />
+        {/* <Route path="/upload" exact element={<Upload />} /> */}
+        {/* <Route path="/" exact element={<Home />} /> */}
         <Route
           path="/supervisorDetails"
           exact
@@ -37,6 +41,13 @@ function App() {
           exact
           element={<PanelMemberDetails />}
         />
+        {/* <div className="container"> */}
+        {/* <Header /> */}
+        {/* <div className="main-content"> */}
+        <Route path="/" exact element={<AppRouter />} />
+        <Route path="/list" exact element={<FilesList />} />
+        {/* </div> */}
+        {/* </div> */}
       </Routes>
     </BrowserRouter>
   );
