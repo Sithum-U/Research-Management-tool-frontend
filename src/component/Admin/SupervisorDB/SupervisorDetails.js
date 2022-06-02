@@ -97,6 +97,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SupervisorDetails() {
+  const [data, setData] = useState({
+    username: "",
+    password: "",
+    email: "",
+    phone: "",
+    role: "",
+    researchField: "",
+  });
+  console.log(data);
   const [supervisor, setsupervisor] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filtered, setfiltered] = useState([]);
@@ -274,7 +283,7 @@ export default function SupervisorDetails() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {supervisor
+                {/* {supervisor
                   .filter((value) => {
                     if (searchTerm === "") {
                       return value;
@@ -285,37 +294,40 @@ export default function SupervisorDetails() {
                     ) {
                       return value;
                     }
-                  })
-                  .map((sup, i) => (
-                    // {supplier !=0 ? supplier.map((supp)=>{
-                    //   return (
-                    <TableRow key={sup._id}>
-                      <TableCell>{sup.username}</TableCell>
-                      <TableCell>{sup.email}</TableCell>
-                      <TableCell>{sup.phone}</TableCell>
-                      <TableCell>{sup.researchField}</TableCell>
-                      <TableCell>
-                        <Link
-                          to={"/updateBranch/" + sup._id}
-                          type="submit"
-                          class="btn btn-primary"
-                        >
-                          <i class="fa fa-trash"></i> UPDATE
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <button
-                          type="submit"
-                          class="btn btn-danger"
-                          onClick={(e) => {
-                            delet(sup._id);
-                          }}
-                        >
-                          <i class="fa fa-trash"></i> DELETE
-                        </button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  }) */}
+
+                {data.role === "admin"
+                  ? supervisor.map((sup, i) => (
+                      // {supplier !=0 ? supplier.map((supp)=>{
+                      //   return (
+                      <TableRow key={sup._id}>
+                        <TableCell>{sup.username}</TableCell>
+                        <TableCell>{sup.email}</TableCell>
+                        <TableCell>{sup.phone}</TableCell>
+                        <TableCell>{sup.researchField}</TableCell>
+                        <TableCell>
+                          <Link
+                            to={"/supervisorDetailsUpdate/" + sup._id}
+                            type="submit"
+                            class="btn btn-primary"
+                          >
+                            <i class="fa fa-trash"></i> UPDATE
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <button
+                            type="submit"
+                            class="btn btn-danger"
+                            onClick={(e) => {
+                              delet(sup._id);
+                            }}
+                          >
+                            <i class="fa fa-trash"></i> DELETE
+                          </button>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  : null}
               </TableBody>
             </Table>
           </TableContainer>
