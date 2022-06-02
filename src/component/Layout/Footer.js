@@ -1,171 +1,51 @@
-import React, { Component } from "react";
-import "./Footer.css";
+import React from "react";
 
-function Footer() {
-  return (
-    <div className="footer-main">
-      <footer className="footer">
-        <div className="container bottom_border">
-          <div className="row">
-            <div className=" col-sm-4 col-md col-sm-4  col-12 col">
-              <h5 className="headin5_amrc col_white_amrc pt2">Find us</h5>
+function Footer(){
 
-              <p className="mb10">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s
-              </p>
-              <p>
-                <i className="fa fa-location-arrow"></i> 9878/25 sec 9 rohini 35{" "}
-              </p>
-              <p>
-                <i className="fa fa-phone"></i> +91-9999878398{" "}
-              </p>
-              <p>
-                <i className="fa fa fa-envelope"></i> info@example.com{" "}
-              </p>
-            </div>
-
-            <div className=" col-sm-4 col-md  Namecol-6 col">
-              <h5 className="headin5_amrc col_white_amrc pt2">Quick links</h5>
-
-              <ul className="footer_ul_amrc">
-                <li>
-                  <a href="http://webenlance.com">Image Rectoucing</a>
-                </li>
-                <li>
-                  <a href="http://webenlance.com">Clipping Path</a>
-                </li>
-                <li>
-                  <a href="http://webenlance.com">Hollow Man Montage</a>
-                </li>
-                <li>
-                  <a href="http://webenlance.com">Ebay & Amazon</a>
-                </li>
-                <li>
-                  <a href="http://webenlance.com">Hair Masking/Clipping</a>
-                </li>
-                <li>
-                  <a href="http://webenlance.com">Image Cropping</a>
-                </li>
-              </ul>
-            </div>
-
-            <div className=" col-sm-4 col-md  col-6 col">
-              <h5 className="headin5_amrc col_white_amrc pt2">Quick links</h5>
-
-              <ul className="footer_ul_amrc">
-                <li>
-                  <a href="http://webenlance.com">Remove Background</a>
-                </li>
-                <li>
-                  <a href="http://webenlance.com">
-                    Shadows & Mirror Reflection
-                  </a>
-                </li>
-                <li>
-                  <a href="http://webenlance.com">Logo Design</a>
-                </li>
-                <li>
-                  <a href="http://webenlance.com">Vectorization</a>
-                </li>
-                <li>
-                  <a href="http://webenlance.com">Hair Masking/Clipping</a>
-                </li>
-                <li>
-                  <a href="http://webenlance.com">Image Cropping</a>
-                </li>
-              </ul>
-            </div>
-
-            <div className=" col-sm-4 col-md  col-12 col">
-              <h5 className="headin5_amrc col_white_amrc pt2">Follow us</h5>
-
-              <ul className="footer_ul2_amrc">
-                <li>
-                  <a href="#">
-                    <i className="fab fa-twitter fleft padding-right"></i>{" "}
-                  </a>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing...
-                    <a href="#">https://www.lipsum.com/</a>
-                  </p>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fab fa-twitter fleft padding-right"></i>{" "}
-                  </a>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing...
-                    <a href="#">https://www.lipsum.com/</a>
-                  </p>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fab fa-twitter fleft padding-right"></i>{" "}
-                  </a>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing...
-                    <a href="#">https://www.lipsum.com/</a>
-                  </p>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="container">
-          <ul className="foote_bottom_ul_amrc">
-            <li>
-              <a href="http://webenlance.com">Home</a>
-            </li>
-            <li>
-              <a href="http://webenlance.com">About</a>
-            </li>
-            <li>
-              <a href="http://webenlance.com">Services</a>
-            </li>
-            <li>
-              <a href="http://webenlance.com">Pricing</a>
-            </li>
-            <li>
-              <a href="http://webenlance.com">Blog</a>
-            </li>
-            <li>
-              <a href="http://webenlance.com">Contact</a>
-            </li>
-          </ul>
-
-          <p className="text-center">
-            Copyright @2017 | Designed With by <a href="#">Your Company Name</a>
-          </p>
-
-          <ul className="social_footer_ul">
-            <li>
-              <a href="http://webenlance.com">
-                <i className="fab fa-facebook-f"></i>
-              </a>
-            </li>
-            <li>
-              <a href="http://webenlance.com">
-                <i className="fab fa-twitter"></i>
-              </a>
-            </li>
-            <li>
-              <a href="http://webenlance.com">
-                <i className="fab fa-linkedin"></i>
-              </a>
-            </li>
-            <li>
-              <a href="http://webenlance.com">
-                <i className="fab fa-instagram"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </footer>
+    return <div>
+        {/* Footer Start  */}
+	<footer>
+		<div className="container">
+			<div className="row">
+				<div className="col-lg-5 col-md-12 col-sm-12">
+					<img src="assets/images/logo-white.png" className="logo" alt=""/>
+					<div className="text">Research Tool Management System</div>
+				</div>
+				<div className="col-lg-2 col-md-4 col-sm-6 col-6">
+					<h5>Helpful Links</h5>
+					<ul className="footer-nav">
+						<li><a href="#"><i className="fa fa-angle-right"></i><span>About Us</span></a></li>
+						<li><a href="#"><i className="fa fa-angle-right"></i><span>Features</span></a></li>
+						<li><a href="#"><i className="fa fa-angle-right"></i><span>FAQ’s</span></a></li>
+						<li><a href="#"><i className="fa fa-angle-right"></i><span>Blog</span></a></li>
+					</ul>
+				</div>
+				<div className="col-lg-2 col-md-4 col-sm-6 col-6">
+					<h5>Support</h5>
+					<ul className="footer-nav">
+						<li><a href="#"><i className="fa fa-angle-right"></i><span>Privacy Policy</span></a></li>
+						<li><a href="#"><i className="fa fa-angle-right"></i><span>Terms of Use</span></a></li>
+						<li><a href="#"><i className="fa fa-angle-right"></i><span>Support Center</span></a></li>
+						<li><a href="#"><i className="fa fa-angle-right"></i><span>Contact</span></a></li>
+					</ul>
+				</div>
+				<div className="col-lg-3 col-md-4 col-sm-12">
+					<h5>Contact Us</h5>
+					<div className="address">
+						<p>22A, 6th Lane,<br/>Colombo 03, Sri Lanka</p>
+						<p>Phone: (947) 456-7370</p>
+						<p><span>E-Mail:</span><a href="#">research@tool.com</a></p>
+					</div>
+				</div>
+			</div>
+			<div className="row">
+				<div className="col-lg-12">
+					<p className="copyright">© 2022. All Rights Reserved.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	 {/* Footer End */}
     </div>
-  );
 }
-
 export default Footer;
