@@ -155,18 +155,40 @@ export default function ClippedDrawer() {
                 </Grid>
               </center>
 
-              {["Marking Schemas", "Presentation/Doc Templates", "Spam"].map(
-                (text, index) => (
-                  <ListItem key={text} disablePadding>
-                    <ListItemButton>
-                      <ListItemIcon>
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                      </ListItemIcon>
-                      <ListItemText primary={text} />
-                    </ListItemButton>
+              <Grid item xs={12}>
+                <Link to="/studentDetails" style={{ textDecoration: "none" }}>
+                  <ListItem variant="contained">
+                    Student DB
+                    <ListItemIcon sm={12}>
+                      <MailIcon />
+                    </ListItemIcon>
                   </ListItem>
-                )
-              )}
+                </Link>
+              </Grid>
+              <Grid item xs={12}>
+                <Link to="/studentDetails" style={{ textDecoration: "none" }}>
+                  <ListItem variant="contained">
+                    View User Roles
+                    <ListItemIcon sm={12}>
+                      <MailIcon />
+                    </ListItemIcon>
+                  </ListItem>
+                </Link>
+              </Grid>
+              {[
+                "Marking Schemas",
+                "Presentation/Doc Templates",
+                "View User Roles",
+              ].map((text, index) => (
+                <ListItem key={text} disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                    </ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
             </List>
           </Box>
         </Drawer>

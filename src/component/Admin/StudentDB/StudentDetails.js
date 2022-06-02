@@ -33,31 +33,24 @@ import AdminPage from "../AdminPage/AdminPage";
 
 const columns = [
   {
-    id: "branchName",
-    label: "Branch Name",
+    id: "username",
+    label: "Student Name",
     minWidth: 100,
-    align: "center",
+    align: "left",
     main: "#f44336",
   },
   {
-    id: "registereddatel",
-    label: "Register Date",
+    id: "email",
+    label: "Email",
     minWidth: 170,
-    align: "center",
+    align: "left",
     // format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: "branchTell",
-    label: "Branch Tell NO",
+    id: "phone",
+    label: "Phone",
     minWidth: 170,
-    align: "center",
-    // format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: "description",
-    label: "Description",
-    minWidth: 170,
-    align: "center",
+    align: "left",
     // format: (value) => value.toLocaleString('en-US'),
   },
 ];
@@ -97,17 +90,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function BranchDetails() {
-  const [branch, setBranch] = useState([]);
+  const [student, setStudent] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filtered, setfiltered] = useState([]);
-  const [branchName, setbranchName] = useState([]);
+  const [studentName, setstudentName] = useState([]);
 
   //This useEffect function used to get all contract's data
   useEffect(() => {
-    fetch("http://localhost:9000/branch/")
+    fetch("http://localhost:8000/api/auth/getUser/")
       .then((res) => res.json())
       .then((data) => {
-        setBranch(data);
+        setStudent(data);
       });
   }, []);
 
@@ -121,7 +114,7 @@ export default function BranchDetails() {
         try {
           const result = await (
             await axios.delete(
-              `http://localhost:9000/branch/deleteBranch/${id}`
+              `http://localhost:8000/api/auth/deleteUser/${id}`
             )
           ).status;
           console.log(result);
@@ -134,7 +127,7 @@ export default function BranchDetails() {
               theme: "dark",
               useTransparency: true,
               onOk: function () {
-                window.location = "/branchDetails";
+                // window.location = "/branchDetails";
               },
             });
           }
@@ -191,13 +184,7 @@ export default function BranchDetails() {
 
   const generatePDF = (tickets) => {
     const doc = new jspdf();
-    const tableColumn = [
-      "Branch ID",
-      "Branch Name",
-      "Registered Date",
-      "Branch Tell",
-      "Description",
-    ];
+    const tableColumn = ["Student ID", "Student Name", "Email", "Phone"];
     const tableRows = [];
     const date = Date().split(" ");
     const dateStr = date[1] + "-" + date[2] + "-" + date[3];
@@ -205,15 +192,14 @@ export default function BranchDetails() {
     tickets.map((ticket) => {
       const ticketData = [
         ticket._id,
-        ticket.branchName,
-        ticket.registereddate,
-        ticket.branchTell,
-        ticket.description,
+        ticket.username,
+        ticket.email,
+        ticket.phone,
       ];
       tableRows.push(ticketData);
     });
-    doc.text("WICKRAMA SUPER PLC", 70, 8).setFontSize(13);
-    doc.text("Branch Details Report", 14, 16).setFontSize(13);
+    doc.text("Research Management Tool", 70, 8).setFontSize(13);
+    doc.text("Student Detailed Report", 14, 16).setFontSize(13);
     doc.text(`Report Genarated Date - ${dateStr}`, 14, 23);
     //right down width height
     doc.addImage(img, "JPEG", 170, 8, 25, 25);
@@ -222,7 +208,7 @@ export default function BranchDetails() {
       startY: 35,
     });
     doc.addImage(img1, "JPEG", 120, 140, 70, 40);
-    doc.save("Branch Details Report.pdf");
+    doc.save("Student Detailed Report.pdf");
   };
 
   return (
@@ -239,7 +225,7 @@ export default function BranchDetails() {
           <button
             type="button"
             class="btn btn-secondary btn-sm"
-            onClick={() => generatePDF(branch)}
+            onClick={() => generatePDF(student)}
           >
             GenerateReport
           </button>{" "}
@@ -274,29 +260,28 @@ export default function BranchDetails() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {branch
+                {student
                   .filter((value) => {
                     if (searchTerm === "") {
                       return value;
                     } else if (
-                      value.branchName
+                      value.username
                         .toLowerCase()
                         .includes(searchTerm.toLowerCase())
                     ) {
                       return value;
                     }
                   })
-                  .map((bran, i) => (
+                  .map((std, i) => (
                     // {supplier !=0 ? supplier.map((supp)=>{
                     //   return (
-                    <TableRow key={bran._id}>
-                      <TableCell>{bran.branchName}</TableCell>
-                      <TableCell>{bran.registereddate}</TableCell>
-                      <TableCell>{bran.branchTell}</TableCell>
-                      <TableCell>{bran.description}</TableCell>
+                    <TableRow key={std._id}>
+                      <TableCell>{std.username}</TableCell>
+                      <TableCell>{std.email}</TableCell>
+                      <TableCell>{std.phone}</TableCell>
                       <TableCell>
                         <Link
-                          to={"/updateBranch/" + bran._id}
+                          to={"/updateBranch/" + std._id}
                           type="submit"
                           class="btn btn-primary"
                         >
@@ -308,7 +293,7 @@ export default function BranchDetails() {
                           type="submit"
                           class="btn btn-danger"
                           onClick={(e) => {
-                            delet(bran._id);
+                            delet(std._id);
                           }}
                         >
                           <i class="fa fa-trash"></i> DELETE
