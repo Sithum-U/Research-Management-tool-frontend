@@ -9,6 +9,7 @@ import SupervisorDetails from "./component/Admin/SupervisorDB/SupervisorDetails"
 import CoSupervisorDetails from "./component/Admin/CoSupervisorDB/CoSupervisorDetails";
 import StudentDetails from "./component/Admin/StudentDB/StudentDetails";
 import PanelMemberDetails from "./component/Admin/PanelMemberDB/PanelMember";
+import ViewRoles from "./component/Admin/viewRole/viewRole";
 import "./App.css";
 
 import AppRouter from "../src/component/Admin/FileUpload/AppRouter";
@@ -41,6 +42,7 @@ function App() {
           exact
           element={<PanelMemberDetails />}
         />
+        <Route path="/viewUserRoles" exact element={<ViewRoles />} />
         {/* <div className="container"> */}
         {/* <Header /> */}
         {/* <div className="main-content"> */}

@@ -166,7 +166,7 @@ export default function ClippedDrawer() {
                 </Link>
               </Grid>
               <Grid item xs={12}>
-                <Link to="/studentDetails" style={{ textDecoration: "none" }}>
+                <Link to="/viewUserRoles" style={{ textDecoration: "none" }}>
                   <ListItem variant="contained">
                     View User Roles
                     <ListItemIcon sm={12}>
