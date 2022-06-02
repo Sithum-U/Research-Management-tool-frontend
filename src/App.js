@@ -1,7 +1,16 @@
 import React from "react";
+import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
+import AddDocumentMarks from "./component/supervisor/documentEvaluation";
 
 function App() {
-    return <h1>Hello world!</h1>
+    const user = localStorage.getItem("token");
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/add" exact element={<AddDocumentMarks />} />
+            </Routes>
+        </BrowserRouter>
+    )
 }
 
 export default App;
