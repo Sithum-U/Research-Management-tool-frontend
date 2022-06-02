@@ -93,7 +93,7 @@ export default function ClippedDrawer() {
             <List>
               <center>
                 <br />
-                <br />
+
                 <Grid container spacing={4}>
                   <Grid item xs={12}>
                     <Link
@@ -153,11 +153,11 @@ export default function ClippedDrawer() {
                     </PopupState>
                   </Grid>
                 </Grid>
-
+                <br />
                 <Grid item xs={12}>
-                  <Link to="/studentDetails" style={{ textDecoration: "none" }}>
+                  <Link to="/viewUserRoles" style={{ textDecoration: "none" }}>
                     <ListItem variant="contained">
-                      Student DB
+                      View User Roles
                       <ListItemIcon sm={12}>
                         <MailIcon />
                       </ListItemIcon>
@@ -165,9 +165,22 @@ export default function ClippedDrawer() {
                   </Link>
                 </Grid>
                 <Grid item xs={12}>
-                  <Link to="/viewUserRoles" style={{ textDecoration: "none" }}>
+                  <Link
+                    to="/uploadDocuments"
+                    style={{ textDecoration: "none" }}
+                  >
                     <ListItem variant="contained">
-                      View User Roles
+                      Upload Documents
+                      <ListItemIcon sm={12}>
+                        <MailIcon />
+                      </ListItemIcon>
+                    </ListItem>
+                  </Link>
+                </Grid>
+                <Grid item xs={12}>
+                  <Link to="/documentlist" style={{ textDecoration: "none" }}>
+                    <ListItem variant="contained">
+                      Document List
                       <ListItemIcon sm={12}>
                         <MailIcon />
                       </ListItemIcon>

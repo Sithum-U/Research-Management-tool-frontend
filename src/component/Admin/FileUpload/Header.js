@@ -5,14 +5,18 @@ import "./style.css";
 
 const Header = () => {
   return (
-    <div className="topnav">
+    // <div className="topnav">
+    <div>
       <h1>File Upload And Download</h1>
       <nav>
-        <NavLink activeClassName="active" to="/" exact={true}>
-          Home
+        <NavLink activeClassName="active" to="/uploadDocuments" exact={true}>
+          Upload
         </NavLink>
-        <NavLink activeClassName="active" to="/list">
+        <NavLink activeClassName="active" to="/documentlist">
           Files List
+        </NavLink>
+        <NavLink activeClassName="active" to="/adminPage">
+          Admin Page
         </NavLink>
       </nav>
     </div>

@@ -70,8 +70,8 @@ function App() {
         {/* <div className="container"> */}
         {/* <Header /> */}
         {/* <div className="main-content"> */}
-        <Route path="/" exact element={<AppRouter />} />
-        <Route path="/list" exact element={<FilesList />} />
+        <Route path="/uploadDocuments" exact element={<AppRouter />} />
+        <Route path="/documentlist" exact element={<FilesList />} />
         {/* </div> */}
         {/* </div> */}
       </Routes>
