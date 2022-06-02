@@ -24,7 +24,7 @@ const AddDocumentMarks = () => {
     try {
       const url = "http://localhost:8000/api/docEvaluation/add";
       const { data: res } = await axios.post(url, data);
-      //navigate("/admin");
+      navigate("/displayDocMarks");
       console.log(res.message);
     } catch (error) {
       if (
