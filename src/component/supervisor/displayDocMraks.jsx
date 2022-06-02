@@ -21,6 +21,9 @@ import { MDBCol } from "mdbreact";
 import "./styles.css";
 import styles from "./styles.module.css";
 
+// import { Button, Modal } from 'react-bootstrap';
+// import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBCardHeader } from 'mdb-react-ui-kit';
+
 const columns = [
   {
     id: "studentGrp",
@@ -209,7 +212,7 @@ export default function BranchDetails() {
       </div> */}
       <center>
         <h1 variant="h4" gutterBottom>
-          Document Evaluation Details
+          Document Evaluation Details of Student Groups
         </h1>
         <Link to="/add">
           <button type="button" className={styles.green_btn}>
