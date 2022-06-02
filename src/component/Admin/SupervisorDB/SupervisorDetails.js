@@ -55,7 +55,7 @@ const columns = [
   },
   {
     id: "researchField",
-    label: "Research Field",
+    label: "ResearchField",
     minWidth: 80,
     align: "left",
     // format: (value) => value.toLocaleString('en-US'),
@@ -97,15 +97,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SupervisorDetails() {
-  const [data, setData] = useState({
-    username: "",
-    password: "",
-    email: "",
-    phone: "",
-    role: "",
-    researchField: "",
-  });
-  console.log(data);
   const [supervisor, setsupervisor] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filtered, setfiltered] = useState([]);
@@ -143,7 +134,7 @@ export default function SupervisorDetails() {
               theme: "dark",
               useTransparency: true,
               onOk: function () {
-                window.location = "/branchDetails";
+                window.location = "/supervisorDetails";
               },
             });
           }
@@ -283,7 +274,7 @@ export default function SupervisorDetails() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {/* {supervisor
+                {supervisor
                   .filter((value) => {
                     if (searchTerm === "") {
                       return value;
@@ -294,12 +285,10 @@ export default function SupervisorDetails() {
                     ) {
                       return value;
                     }
-                  }) */}
+                  })
 
-                {data.role === "admin"
-                  ? supervisor.map((sup, i) => (
-                      // {supplier !=0 ? supplier.map((supp)=>{
-                      //   return (
+                  .map((sup) => {
+                    return sup.role === "supervisor" ? (
                       <TableRow key={sup._id}>
                         <TableCell>{sup.username}</TableCell>
                         <TableCell>{sup.email}</TableCell>
@@ -326,8 +315,8 @@ export default function SupervisorDetails() {
                           </button>
                         </TableCell>
                       </TableRow>
-                    ))
-                  : null}
+                    ) : null;
+                  })}
               </TableBody>
             </Table>
           </TableContainer>

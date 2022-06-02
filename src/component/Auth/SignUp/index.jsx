@@ -347,7 +347,7 @@ const Signup = (props) => {
                 </option>
               </NativeSelect>
             </FormControl> */}
-            {data.role == "admin" ? (
+            {data.role == "supervisor" ? (
               <input
                 type="researchField"
                 placeholder="Research Field"

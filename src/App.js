@@ -48,22 +48,22 @@ function App() {
         />
         <Route path="/viewUserRoles" exact element={<ViewRoles />} />
         <Route
-          path="/supervisorDetailsUpdate"
+          path="/supervisorDetailsUpdate/:id"
           exact
           element={<SupervisorDetailsUpdate />}
         />
         <Route
-          path="/cosupervisorDetailsUpdate"
+          path="/cosupervisorDetailsUpdate/:id"
           exact
           element={<CoSupervisorDetailsUpdate />}
         />
         <Route
-          path="/panelMemberDetailsUpdate"
+          path="/panelMemberDetailsUpdate/:id"
           exact
           element={<PanelMemberUpdate />}
         />
         <Route
-          path="/studentDetailsUpdate"
+          path="/studentDetailsUpdate/:id"
           exact
           element={<StudentDetailsUpdate />}
         />

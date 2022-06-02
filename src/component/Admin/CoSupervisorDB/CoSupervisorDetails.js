@@ -33,31 +33,31 @@ import AdminPage from "../AdminPage/AdminPage";
 
 const columns = [
   {
-    id: "branchName",
-    label: "Branch Name",
-    minWidth: 100,
-    align: "center",
+    id: "username",
+    label: "Supervisor Name",
+    minWidth: 80,
+    align: "left",
     main: "#f44336",
   },
   {
-    id: "registereddatel",
-    label: "Register Date",
-    minWidth: 170,
-    align: "center",
+    id: "email",
+    label: "Email",
+    minWidth: 80,
+    align: "left",
     // format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: "branchTell",
-    label: "Branch Tell NO",
-    minWidth: 170,
-    align: "center",
+    id: "phone",
+    label: "Phone",
+    minWidth: 80,
+    align: "left",
     // format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: "description",
-    label: "Description",
-    minWidth: 170,
-    align: "center",
+    id: "researchField",
+    label: "ResearchField",
+    minWidth: 80,
+    align: "left",
     // format: (value) => value.toLocaleString('en-US'),
   },
 ];
@@ -96,18 +96,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BranchDetails() {
-  const [branch, setBranch] = useState([]);
+export default function SupervisorDetails() {
+  const [supervisor, setsupervisor] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filtered, setfiltered] = useState([]);
-  const [branchName, setbranchName] = useState([]);
+  const [supervisorName, setsupervisorName] = useState([]);
 
   //This useEffect function used to get all contract's data
   useEffect(() => {
-    fetch("http://localhost:9000/branch/")
+    fetch("http://localhost:8000/api/auth/getUser/")
       .then((res) => res.json())
       .then((data) => {
-        setBranch(data);
+        setsupervisor(data);
       });
   }, []);
 
@@ -121,7 +121,7 @@ export default function BranchDetails() {
         try {
           const result = await (
             await axios.delete(
-              `http://localhost:9000/branch/deleteBranch/${id}`
+              `http://localhost:8000/api/auth/deleteUser/${id}`
             )
           ).status;
           console.log(result);
@@ -134,7 +134,7 @@ export default function BranchDetails() {
               theme: "dark",
               useTransparency: true,
               onOk: function () {
-                window.location = "/branchDetails";
+                window.location = "/supervisorDetails";
               },
             });
           }
@@ -192,11 +192,11 @@ export default function BranchDetails() {
   const generatePDF = (tickets) => {
     const doc = new jspdf();
     const tableColumn = [
-      "Branch ID",
-      "Branch Name",
-      "Registered Date",
-      "Branch Tell",
-      "Description",
+      "Supervisor ID",
+      "Supervisor Name",
+      "Email",
+      "Phone",
+      "Research Field",
     ];
     const tableRows = [];
     const date = Date().split(" ");
@@ -205,15 +205,15 @@ export default function BranchDetails() {
     tickets.map((ticket) => {
       const ticketData = [
         ticket._id,
-        ticket.branchName,
-        ticket.registereddate,
-        ticket.branchTell,
-        ticket.description,
+        ticket.username,
+        ticket.email,
+        ticket.phone,
+        ticket.researchField,
       ];
       tableRows.push(ticketData);
     });
-    doc.text("WICKRAMA SUPER PLC", 70, 8).setFontSize(13);
-    doc.text("Branch Details Report", 14, 16).setFontSize(13);
+    doc.text("Research Management Tool", 70, 8).setFontSize(13);
+    doc.text("Co Supervisor Details Report", 14, 16).setFontSize(13);
     doc.text(`Report Genarated Date - ${dateStr}`, 14, 23);
     //right down width height
     doc.addImage(img, "JPEG", 170, 8, 25, 25);
@@ -222,7 +222,7 @@ export default function BranchDetails() {
       startY: 35,
     });
     doc.addImage(img1, "JPEG", 120, 140, 70, 40);
-    doc.save("Branch Details Report.pdf");
+    doc.save("Co Supervisor Details Report.pdf");
   };
 
   return (
@@ -239,7 +239,7 @@ export default function BranchDetails() {
           <button
             type="button"
             class="btn btn-secondary btn-sm"
-            onClick={() => generatePDF(branch)}
+            onClick={() => generatePDF(supervisor)}
           >
             GenerateReport
           </button>{" "}
@@ -274,48 +274,49 @@ export default function BranchDetails() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {branch
+                {supervisor
                   .filter((value) => {
                     if (searchTerm === "") {
                       return value;
                     } else if (
-                      value.branchName
+                      value.username
                         .toLowerCase()
                         .includes(searchTerm.toLowerCase())
                     ) {
                       return value;
                     }
                   })
-                  .map((bran, i) => (
-                    // {supplier !=0 ? supplier.map((supp)=>{
-                    //   return (
-                    <TableRow key={bran._id}>
-                      <TableCell>{bran.branchName}</TableCell>
-                      <TableCell>{bran.registereddate}</TableCell>
-                      <TableCell>{bran.branchTell}</TableCell>
-                      <TableCell>{bran.description}</TableCell>
-                      <TableCell>
-                        <Link
-                          to={"/updateBranch/" + bran._id}
-                          type="submit"
-                          class="btn btn-primary"
-                        >
-                          <i class="fa fa-trash"></i> UPDATE
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <button
-                          type="submit"
-                          class="btn btn-danger"
-                          onClick={(e) => {
-                            delet(bran._id);
-                          }}
-                        >
-                          <i class="fa fa-trash"></i> DELETE
-                        </button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
+
+                  .map((sup) => {
+                    return sup.role === "cosupervisor" ? (
+                      <TableRow key={sup._id}>
+                        <TableCell>{sup.username}</TableCell>
+                        <TableCell>{sup.email}</TableCell>
+                        <TableCell>{sup.phone}</TableCell>
+                        <TableCell>{sup.researchField}</TableCell>
+                        <TableCell>
+                          <Link
+                            to={"/supervisorDetailsUpdate/" + sup._id}
+                            type="submit"
+                            class="btn btn-primary"
+                          >
+                            <i class="fa fa-trash"></i> UPDATE
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <button
+                            type="submit"
+                            class="btn btn-danger"
+                            onClick={(e) => {
+                              delet(sup._id);
+                            }}
+                          >
+                            <i class="fa fa-trash"></i> DELETE
+                          </button>
+                        </TableCell>
+                      </TableRow>
+                    ) : null;
+                  })}
               </TableBody>
             </Table>
           </TableContainer>

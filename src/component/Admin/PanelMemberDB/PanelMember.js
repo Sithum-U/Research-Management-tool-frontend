@@ -277,35 +277,35 @@ export default function PanelMemberDetails() {
                       return value;
                     }
                   })
-                  .map((pm, i) => (
-                    // {supplier !=0 ? supplier.map((supp)=>{
-                    //   return (
-                    <TableRow key={pm._id}>
-                      <TableCell>{pm.username}</TableCell>
-                      <TableCell>{pm.email}</TableCell>
-                      <TableCell>{pm.phone}</TableCell>
-                      <TableCell>
-                        <Link
-                          to={"/updateBranch/" + pm._id}
-                          type="submit"
-                          class="btn btn-primary"
-                        >
-                          <i class="fa fa-trash"></i> UPDATE
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <button
-                          type="submit"
-                          class="btn btn-danger"
-                          onClick={(e) => {
-                            delet(pm._id);
-                          }}
-                        >
-                          <i class="fa fa-trash"></i> DELETE
-                        </button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  .map((pm) => {
+                    return pm.role === "panelmember" ? (
+                      <TableRow key={pm._id}>
+                        <TableCell>{pm.username}</TableCell>
+                        <TableCell>{pm.email}</TableCell>
+                        <TableCell>{pm.phone}</TableCell>
+                        <TableCell>
+                          <Link
+                            to={"/panelMemberDetailsUpdate/" + pm._id}
+                            type="submit"
+                            class="btn btn-primary"
+                          >
+                            <i class="fa fa-trash"></i> UPDATE
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <button
+                            type="submit"
+                            class="btn btn-danger"
+                            onClick={(e) => {
+                              delet(pm._id);
+                            }}
+                          >
+                            <i class="fa fa-trash"></i> DELETE
+                          </button>
+                        </TableCell>
+                      </TableRow>
+                    ) : null;
+                  })}
               </TableBody>
             </Table>
           </TableContainer>

@@ -272,35 +272,35 @@ export default function BranchDetails() {
                       return value;
                     }
                   })
-                  .map((std, i) => (
-                    // {supplier !=0 ? supplier.map((supp)=>{
-                    //   return (
-                    <TableRow key={std._id}>
-                      <TableCell>{std.username}</TableCell>
-                      <TableCell>{std.email}</TableCell>
-                      <TableCell>{std.phone}</TableCell>
-                      <TableCell>
-                        <Link
-                          to={"/updateBranch/" + std._id}
-                          type="submit"
-                          class="btn btn-primary"
-                        >
-                          <i class="fa fa-trash"></i> UPDATE
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <button
-                          type="submit"
-                          class="btn btn-danger"
-                          onClick={(e) => {
-                            delet(std._id);
-                          }}
-                        >
-                          <i class="fa fa-trash"></i> DELETE
-                        </button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  .map((std) => {
+                    return std.role === "student" ? (
+                      <TableRow key={std._id}>
+                        <TableCell>{std.username}</TableCell>
+                        <TableCell>{std.email}</TableCell>
+                        <TableCell>{std.phone}</TableCell>
+                        <TableCell>
+                          <Link
+                            to={"/studentDetailsUpdate/" + std._id}
+                            type="submit"
+                            class="btn btn-primary"
+                          >
+                            <i class="fa fa-trash"></i> UPDATE
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <button
+                            type="submit"
+                            class="btn btn-danger"
+                            onClick={(e) => {
+                              delet(std._id);
+                            }}
+                          >
+                            <i class="fa fa-trash"></i> DELETE
+                          </button>
+                        </TableCell>
+                      </TableRow>
+                    ) : null;
+                  })}
               </TableBody>
             </Table>
           </TableContainer>

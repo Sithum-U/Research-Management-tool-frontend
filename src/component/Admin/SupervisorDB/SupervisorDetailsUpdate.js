@@ -1,123 +1,34 @@
-import React from "react";
-import { useState, createRef } from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import { TextareaAutosize } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
-import PhotoCamera from "@material-ui/icons/PhotoCamera";
-import Paper from "@material-ui/core/Paper";
-import { deepOrange, deepPurple } from "@material-ui/core/colors";
-import { useParams } from "react-router";
-import { useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import styles from "./styles.module.css";
 import AdminPage from "../AdminPage/AdminPage";
 
-const useStyles = makeStyles((theme) => ({
-  //display date
-  container: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  }, //end date
+const updateDocEvaluation = () => {
+  const [updateSuperviserDetails, setUpdateSupervisorDetails] = useState([]);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  root: {
-    display: "flex",
-    "& > *": {
-      // margin: theme.spacing(50),
-      // width: theme.spacing(150),
-      // height: theme.spacing(60),
-      // marginTop: theme.spacing(8),
-    },
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
-  },
-  orange: {
-    color: theme.palette.getContrastText(deepOrange[500]),
-    backgroundColor: deepOrange[500],
-  },
-  paper: {
-    marginTop: theme.spacing(0),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
+  const handleChange = ({ currentTarget: input }) => {
+    setData({ ...data, [input.name]: input.value });
+  };
 
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
-export default function AddSupervisor() {
   const [username, setUsername] = useState("");
   const { id } = useParams();
-
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [researchField, setResearchField] = useState("");
 
   useEffect(() => {
-    async function getData() {
-      const result = await (
-        await axios.get(`http://localhost:8000/api/auth/getUser/${id}`)
-      ).data.data;
-      console.log(result);
-      //console.log(result[0].supplierName)
-      setUsername(username.username);
-      setRegistereddate(registereddate.registereddate);
-      setEmail(email.email);
-      setPhone(phone.phone);
-      setResearchField(researchField.researchField);
-      // console.log(supplierName)
-    }
-    getData();
+    fetch(`http://localhost:8000/api/auth/getUser/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUpdateSupervisorDetails(data);
+        console.log(data);
+      });
   }, []);
 
-  const classes = useStyles();
-  const [value, setValue] = React.useState("Controlled");
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
-  //   const [contractold,setcontractold]=useState([]);
-
-  //   useEffect(()=>{
-  //   fetch(`http://localhost:9000/supplier/${id}`)
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     setsupplierold(data);
-  //     console.log(data);
-  //   });
-  // }, []);
-
-  //code goes here...
-
-  const [supervisor, setSupervisor] = useState({
+  const [data, setData] = useState({
     username: "",
     email: "",
     phone: "",
@@ -126,9 +37,10 @@ export default function AddSupervisor() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(supervisor);
+    const url = `http://localhost:8000/api/auth/update/${id}`;
+    const credentials = { username, email, phone, researchField };
     axios
-      .put(`http://localhost:8000/api/auth/update/${id}`, supervisor)
+      .put(url, credentials)
       .then((res) => {
         alert("Supervisor Updated Successfully!");
         window.location = "/supervisorDetails";
@@ -142,102 +54,59 @@ export default function AddSupervisor() {
   return (
     <div>
       <AdminPage />
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <div className={classes.root}>
-            <Avatar className={classes.purple}>US</Avatar>
-          </div>
-          <Typography component="h1" variant="h5">
-            UPDATE SUPERVISOR
-          </Typography>
-          <form
-            className={classes.form}
-            noValidate
-            onSubmit={(e) => {
-              handleSubmit(e);
-            }}
-          >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  // autoComplete="pname"
-                  name="username"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="username"
-                  label="Username"
-                  autoFocus
-                  onChange={(e) =>
-                    setSupervisor({ ...supervisor, username: e.target.value })
-                  }
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  name="email"
-                  variant="outlined"
-                  required
-                  ful
-                  lWidth
-                  id="email"
-                  label="Supervisor Email"
-                  autoFocus
-                  onChange={(e) =>
-                    setSupervisor({ ...supervisor, email: e.target.value })
-                  }
-                />
-              </Grid>
 
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="phone"
-                  label="Supervisor Mobile NO"
-                  name="phone"
-                  autoComplete="phone"
-                  onChange={(e) =>
-                    setSupervisor({ ...supervisor, phone: e.target.value })
-                  }
-                />
-              </Grid>
+      <div className={styles.card}>
+        <form className={styles.form_container} onSubmit={handleSubmit}>
+          <h1>Update Supervicor Details</h1>
 
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="des"
-                  name="researchField"
-                  variant="outlined"
-                  required
-                  ful
-                  lWidth
-                  id="researchField"
-                  label="ResearchField"
-                  autoFocus
-                  onChange={(e) =>
-                    setSupervisor({
-                      ...supervisor,
-                      researchField: e.target.value,
-                    })
-                  }
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              UPDATE
-            </Button>
-            <Grid container justifyContent="flex-end"></Grid>
-          </form>
-        </div>
-      </Container>
+          <label>Supervisor Name</label>
+          <input
+            type="text"
+            placeholder={data.username}
+            name="username"
+            onChange={(e) => setUsername(e.target.value)}
+            defaultValue={updateSuperviserDetails.username}
+            className={styles.input}
+          />
+
+          <label>Supervisor Email</label>
+          <input
+            type="text"
+            placeholder={data.email}
+            name="email"
+            onChange={(e) => setEmail(e.target.value)}
+            defaultValue={updateSuperviserDetails.email}
+            className={styles.input}
+          />
+
+          <label>Mobile No</label>
+          <input
+            type="text"
+            placeholder={data.phone}
+            name="phone"
+            onChange={(e) => setPhone(e.target.value)}
+            defaultValue={updateSuperviserDetails.phone}
+            className={styles.input}
+          />
+
+          <label>Research Field</label>
+          <input
+            type="text"
+            placeholder={data.researchField}
+            name="researchField"
+            onChange={(e) => setResearchField(e.target.value)}
+            defaultValue={updateSuperviserDetails.researchField}
+            className={styles.input}
+          />
+
+          {error && <div className={styles.error_msg}>{error}</div>}
+          <button type="submit" className={styles.green_btn}>
+            Update Supervicor
+          </button>
+        </form>
+      </div>
     </div>
   );
-}
+};
+
+export default updateDocEvaluation;
