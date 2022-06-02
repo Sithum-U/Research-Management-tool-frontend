@@ -11,6 +11,9 @@ import StudentDetails from "./component/Admin/StudentDB/StudentDetails";
 import PanelMemberDetails from "./component/Admin/PanelMemberDB/PanelMember";
 import ViewRoles from "./component/Admin/viewRole/viewRole";
 import SupervisorDetailsUpdate from "./component/Admin/SupervisorDB/SupervisorDetailsUpdate";
+import CoSupervisorDetailsUpdate from "./component/Admin/CoSupervisorDB/cosupervisorDetailsUpdate";
+import PanelMemberUpdate from "./component/Admin/PanelMemberDB/PanelMemberDetailsUpdate";
+import StudentDetailsUpdate from "./component/Admin/StudentDB/StudentDetailsUpdate";
 import "./App.css";
 
 import AppRouter from "../src/component/Admin/FileUpload/AppRouter";
@@ -48,6 +51,21 @@ function App() {
           path="/supervisorDetailsUpdate"
           exact
           element={<SupervisorDetailsUpdate />}
+        />
+        <Route
+          path="/cosupervisorDetailsUpdate"
+          exact
+          element={<CoSupervisorDetailsUpdate />}
+        />
+        <Route
+          path="/panelMemberDetailsUpdate"
+          exact
+          element={<PanelMemberUpdate />}
+        />
+        <Route
+          path="/studentDetailsUpdate"
+          exact
+          element={<StudentDetailsUpdate />}
         />
         {/* <div className="container"> */}
         {/* <Header /> */}

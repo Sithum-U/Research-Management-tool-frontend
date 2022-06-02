@@ -25,6 +25,7 @@ import Paper from "@material-ui/core/Paper";
 import { deepOrange, deepPurple } from "@material-ui/core/colors";
 import { useParams } from "react-router";
 import { useEffect } from "react";
+import AdminPage from "../AdminPage/AdminPage";
 
 const useStyles = makeStyles((theme) => ({
   //display date
@@ -71,11 +72,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AddBranch() {
+export default function AddSupervisor() {
   const [username, setUsername] = useState("");
   const { id } = useParams();
 
-  const [registereddate, setRegistereddate] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [researchField, setResearchField] = useState("");
@@ -140,101 +140,104 @@ export default function AddBranch() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <div className={classes.root}>
-          <Avatar className={classes.purple}>US</Avatar>
-        </div>
-        <Typography component="h1" variant="h5">
-          UPDATE SUPERVISOR
-        </Typography>
-        <form
-          className={classes.form}
-          noValidate
-          onSubmit={(e) => {
-            handleSubmit(e);
-          }}
-        >
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                // autoComplete="pname"
-                name="username"
-                variant="outlined"
-                required
-                fullWidth
-                id="username"
-                label="Username"
-                autoFocus
-                onChange={(e) =>
-                  setSupervisor({ ...supervisor, username: e.target.value })
-                }
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                name="email"
-                variant="outlined"
-                required
-                ful
-                lWidth
-                id="email"
-                label="Supervisor Email"
-                autoFocus
-                onChange={(e) =>
-                  setSupervisor({ ...supervisor, email: e.target.value })
-                }
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="phone"
-                label="Supervisor Mobile NO"
-                name="phone"
-                autoComplete="phone"
-                onChange={(e) =>
-                  setSupervisor({ ...supervisor, phone: e.target.value })
-                }
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <TextField
-                autoComplete="des"
-                name="researchField"
-                variant="outlined"
-                required
-                ful
-                lWidth
-                id="researchField"
-                label="ResearchField"
-                autoFocus
-                onChange={(e) =>
-                  setSupervisor({
-                    ...supervisor,
-                    researchField: e.target.value,
-                  })
-                }
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
+    <div>
+      <AdminPage />
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <div className={classes.root}>
+            <Avatar className={classes.purple}>US</Avatar>
+          </div>
+          <Typography component="h1" variant="h5">
+            UPDATE SUPERVISOR
+          </Typography>
+          <form
+            className={classes.form}
+            noValidate
+            onSubmit={(e) => {
+              handleSubmit(e);
+            }}
           >
-            UPDATE
-          </Button>
-          <Grid container justifyContent="flex-end"></Grid>
-        </form>
-      </div>
-    </Container>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  // autoComplete="pname"
+                  name="username"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="username"
+                  label="Username"
+                  autoFocus
+                  onChange={(e) =>
+                    setSupervisor({ ...supervisor, username: e.target.value })
+                  }
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  name="email"
+                  variant="outlined"
+                  required
+                  ful
+                  lWidth
+                  id="email"
+                  label="Supervisor Email"
+                  autoFocus
+                  onChange={(e) =>
+                    setSupervisor({ ...supervisor, email: e.target.value })
+                  }
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="phone"
+                  label="Supervisor Mobile NO"
+                  name="phone"
+                  autoComplete="phone"
+                  onChange={(e) =>
+                    setSupervisor({ ...supervisor, phone: e.target.value })
+                  }
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="des"
+                  name="researchField"
+                  variant="outlined"
+                  required
+                  ful
+                  lWidth
+                  id="researchField"
+                  label="ResearchField"
+                  autoFocus
+                  onChange={(e) =>
+                    setSupervisor({
+                      ...supervisor,
+                      researchField: e.target.value,
+                    })
+                  }
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              UPDATE
+            </Button>
+            <Grid container justifyContent="flex-end"></Grid>
+          </form>
+        </div>
+      </Container>
+    </div>
   );
 }
