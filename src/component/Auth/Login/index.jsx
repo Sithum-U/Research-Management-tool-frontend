@@ -26,11 +26,16 @@ function Login() {
       // localStorage.setItem("token", data.token);
 
       if (data.message == "Login successful") {
-        if (data.user.role == "admin") {
+        if (data.user.role == "student") {
           window.location.href = "/adminPage";
         } else if (data.user.role == "supervisor") {
           window.location.href = "/adminPage";
-          console.log(data);
+        } else if (data.user.role == "cosupervisor") {
+          window.location.href = "/adminPage";
+        } else if (data.user.role == "panelmember") {
+          window.location.href = "/adminPage";
+        } else if (data.user.role == "admin") {
+          window.location.href = "/adminPage";
         }
       } else {
         console.log("Invalid user Name or password");

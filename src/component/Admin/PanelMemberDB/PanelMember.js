@@ -33,29 +33,22 @@ import AdminPage from "../AdminPage/AdminPage";
 
 const columns = [
   {
-    id: "name",
+    id: "username",
     label: "Panel Member Name",
     minWidth: 100,
     align: "center",
     main: "#f44336",
   },
   {
-    id: "position",
-    label: "Position",
-    minWidth: 170,
-    align: "center",
-    // format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: "mobile",
-    label: "Mobile NO",
-    minWidth: 170,
-    align: "center",
-    // format: (value) => value.toLocaleString('en-US'),
-  },
-  {
     id: "email",
     label: "Email",
+    minWidth: 170,
+    align: "center",
+    // format: (value) => value.toLocaleString('en-US'),
+  },
+  {
+    id: "phone",
+    label: "Phone",
     minWidth: 170,
     align: "center",
     // format: (value) => value.toLocaleString('en-US'),
@@ -104,7 +97,7 @@ export default function PanelMemberDetails() {
 
   //This useEffect function used to get all panel Member's data
   useEffect(() => {
-    fetch("http://localhost:8000/panel/")
+    fetch("http://localhost:8000/api/auth/getUser/")
       .then((res) => res.json())
       .then((data) => {
         setPanelmember(data);
@@ -121,7 +114,7 @@ export default function PanelMemberDetails() {
         try {
           const result = await (
             await axios.delete(
-              `http://localhost:9000/branch/deleteBranch/${id}`
+              `http://localhost:8000/api/auth/deleteUser/${id}`
             )
           ).status;
           console.log(result);
@@ -194,9 +187,8 @@ export default function PanelMemberDetails() {
     const tableColumn = [
       "Panel Member ID",
       "Panel Member Name",
-      "Position",
-      "Mobile",
       "Email",
+      "Phone",
     ];
     const tableRows = [];
     const date = Date().split(" ");
@@ -205,10 +197,9 @@ export default function PanelMemberDetails() {
     tickets.map((ticket) => {
       const ticketData = [
         ticket._id,
-        ticket.name,
-        ticket.position,
-        ticket.mobile,
+        ticket.username,
         ticket.email,
+        ticket.phone,
       ];
       tableRows.push(ticketData);
     });
@@ -216,12 +207,12 @@ export default function PanelMemberDetails() {
     doc.text("Panel Member Detailed Report", 14, 16).setFontSize(13);
     doc.text(`Report Genarated Date - ${dateStr}`, 14, 23);
     //right down width height
-    doc.addImage(img, "JPEG", 170, 8, 25, 25);
+    // doc.addImage(img, "JPEG", 170, 8, 25, 25);
     doc.autoTable(tableColumn, tableRows, {
       styles: { fontSize: 8 },
       startY: 35,
     });
-    doc.addImage(img1, "JPEG", 120, 140, 70, 40);
+    // doc.addImage(img1, "JPEG", 120, 140, 70, 40);
     doc.save("PanelMember Detailed Report.pdf");
   };
 
@@ -279,7 +270,7 @@ export default function PanelMemberDetails() {
                     if (searchTerm === "") {
                       return value;
                     } else if (
-                      value.pmemberName
+                      value.username
                         .toLowerCase()
                         .includes(searchTerm.toLowerCase())
                     ) {
@@ -290,10 +281,9 @@ export default function PanelMemberDetails() {
                     // {supplier !=0 ? supplier.map((supp)=>{
                     //   return (
                     <TableRow key={pm._id}>
-                      <TableCell>{pm.name}</TableCell>
-                      <TableCell>{pm.position}</TableCell>
-                      <TableCell>{pm.mobile}</TableCell>
+                      <TableCell>{pm.username}</TableCell>
                       <TableCell>{pm.email}</TableCell>
+                      <TableCell>{pm.phone}</TableCell>
                       <TableCell>
                         <Link
                           to={"/updateBranch/" + pm._id}
