@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     position: "relative",
   },
-  
+
   layout: {
     width: "auto",
     marginLeft: theme.spacing(2),
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
       width: "25ch",
     },
   },
- 
+
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Findtopic() {
 
- const  [findTopic, setfindTopic] = useState({reserchField :"",reserchTopic:"",supervisor:""})
+  const [findTopic, setfindTopic] = useState({ reserchField: "", reserchTopic: "", supervisor: "" })
 
 
   // const [findTopic, setfindTopic] = useState([]);
@@ -64,7 +64,7 @@ export default function Findtopic() {
   // const [reserchField, setreserchField] = useState("");
   // const [reserchTopic, setreserchTopic] = useState("");
   // const [supervisor, setsupervisor] = useState("");
-  
+
   // useEffect(() => {
   //   fetch("http://localhost:8000/findtopic/")
   //     .then((res) => res.json())
@@ -79,14 +79,14 @@ export default function Findtopic() {
     // const url = 
     // const credentials = { reserchField, reserchTopic, supervisor}
     axios.post('http://localhost:8000/findtopic/', findTopic)
-    .then((res) => {
-      alert("Request Successfully send!");
-    })
-    .catch((error) => {
-      console.log(error.message);
-      alert(error.message);
-    });
-}
+      .then((res) => {
+        alert("Request Successfully send!");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        alert(error.message);
+      });
+  }
   const classes = useStyles();
 
   return (
@@ -97,7 +97,7 @@ export default function Findtopic() {
             <center>
               <Container component="main" maxWidth="xs">
                 <Typography component="h1" variant="h5">
-                <br></br>
+                  <br></br>
                   <center><h2>Find a Reserch Topic</h2> </center><br></br>
                 </Typography>
                 <br />
@@ -105,17 +105,19 @@ export default function Findtopic() {
                   className={classes.form}
                   onSubmit={e => handleSubmit(e)}
                 >
+
                   <Grid container spacing={2}>
                     <Grid item xs={12}>
                       <Select
+
                         labelId="demo-simple-select-helper-label"
                         id="demo-simple-select-helper"
                         label="Select a Reserch Field"
                         sx={{ width: 395 }}
-                       
                       >
+
                         <MenuItem value="">
-                          <b>Reserch Field </b>
+                          <b>Reserch Fields </b>
                         </MenuItem>
 
                         {/* {student
@@ -128,7 +130,7 @@ export default function Findtopic() {
                             })
                           : null} */}
                       </Select>
-                    </Grid>   
+                    </Grid>
                     <Grid item xs={12}>
                       <TextField
                         variant="outlined"
@@ -139,7 +141,7 @@ export default function Findtopic() {
                         name="Enter Reserch Topic"
                         autoComplete="reserchTopic"
                         autoFocus
-                        onChange={e => setfindTopic({ ...findTopic,reserchTopic:e.target.value })} 
+                        onChange={e => setfindTopic({ ...findTopic, reserchTopic: e.target.value })}
                       />
                     </Grid>
 
@@ -149,7 +151,7 @@ export default function Findtopic() {
                         id="demo-simple-select-helper"
                         label="Select a Supervisor"
                         sx={{ width: 395 }}
-                        
+
                       >
                         <MenuItem value="">
                           <b> Select a Supervisor </b>
@@ -169,14 +171,14 @@ export default function Findtopic() {
 
                   </Grid>
                   <br></br>
-       
+
                   <Link to="/create">
                     <Button type="button"
-              variant="outline-info"
-              className={styles.green_btn}
-            >Back</Button>
+                      variant="outline-info"
+                      className={styles.green_btn}
+                    >Back</Button>
                   </Link>
-                  
+
                   <Button type="submit" className={styles.green_btn}>
                     Send a Request to Supervisor
                   </Button>

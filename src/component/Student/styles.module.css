@@ -41,7 +41,6 @@ h1{
   background-size: cover;
   justify-content: center;
 }
-
 .signup_form_container1 {
   width: 1000px;
   height: 850px;
@@ -53,7 +52,7 @@ h1{
 }
 .signup_form_container2 {
   width: 1000px;
-  height: 840px;
+  height: 810px;
   display: flex;
   border-radius: 10px;
   margin-top: 6%;
@@ -78,8 +77,15 @@ h1{
   box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
     0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
 }
-
-
+.signup_form_container5 {
+  width: 1800px;
+  height: 1500px;
+  display: flex;
+  border-radius: 10px;
+  margin-top: 6%;
+  box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+    0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
 .left {
   flex: 1;
   display: flex;
@@ -99,7 +105,6 @@ h1{
   font-size: 25px;
   align-self: center;
 }
-
 .right {
   /* flex: 2; */
   width: 60%;
@@ -139,11 +144,10 @@ h1{
   margin-right: auto;
   margin-bottom: 300px;
 }
-
 .right2 {
   /* flex: 2; */
-  width: 65%;
-  height:70%;
+  width: 70%;
+  height:68%;
   display: flex;
   flex-direction: column;
   /* align-items: center; */
@@ -159,7 +163,6 @@ h1{
   margin-right: auto;
   margin-bottom: 300px;
 }
-
 .right3 {
   /* flex: 2; */
   width: 68%;
@@ -177,8 +180,7 @@ h1{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 300px;
-  
+  margin-bottom: 300px; 
 }
 .right4 {
   /* flex: 2; */
@@ -216,13 +218,12 @@ h1{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 300px;
-  
+  margin-bottom: 300px; 
 }
 .right6 {
   /* flex: 2; */
   width: 58%;
-  height:70%;
+  height:75%;
   display: flex;
   flex-direction: column;
   /* align-items: center; */
@@ -237,7 +238,6 @@ h1{
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 300px;
-  
 }
 .right7 {
   /* flex: 2; */
@@ -257,7 +257,6 @@ h1{
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 300px;
-  
 }
 .right8 {
   /* flex: 2; */
@@ -277,9 +276,7 @@ h1{
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 300px;
-  
 }
-
 .form_container1 {
   display: flex;
   flex-direction: column;
@@ -350,6 +347,22 @@ h1{
   cursor: pointer;
   
 }
+.green_btn6 {
+  background-color: #3b90b1;
+  border: none;
+  outline: none;
+  padding: 8px 0;
+  border-radius: 10px;
+  width: 170px;
+  height: 45px;
+  font-weight: bold;
+  font-size: 10px;
+  cursor: pointer;
+  
+}
+.green_btn6:hover {
+  background-color: #3e538e;
+}
 
 
 .green_btn {
@@ -393,40 +406,25 @@ h1{
 .green_btn:hover {
   background-color: #3e538e;
 }
-
 .green_btn5:hover {
   background-color: #3e538e;
 }
-
 .green_btn1:hover {
   background-color: #3e538e;
 }
-
 .green_btn:active {
   background-color: #3e798e;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-
 .white_btn:hover {
   background-color: #3ba3b1;
 }
-
 .white_btn:active {
   background-color: #3b97b1;
   box-shadow: 0 5px #666;
   transform: translateY(2px);
-  
 }
-
-
-
-
-
-
-
-
-
 .btn:not(:disabled):not(.disabled) {
   cursor: pointer;
 }
