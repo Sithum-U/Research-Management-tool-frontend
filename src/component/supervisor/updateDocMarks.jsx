@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import styles from "./styles.module.css";
@@ -20,14 +20,14 @@ const updateDocEvaluation = () => {
   const [total, setTotal] = useState("");
   const [comments, setComments] = useState("");
 
-useEffect(() => {
+  useEffect(() => {
     fetch(`http://localhost:8000/api/docEvaluation/${id}`)
-        .then((res) => res.json())
-        .then((data) => {
-            setUpdateDocDetails(data);
-            console.log(data);
-        });
-}, []);
+      .then((res) => res.json())
+      .then((data) => {
+        setUpdateDocDetails(data);
+        console.log(data);
+      });
+  }, []);
 
   const [data, setData] = useState({
     studentGrp: "",
@@ -35,24 +35,32 @@ useEffect(() => {
     corectness: "",
     plagiarism: "",
     total: "",
-    comments: ""
+    comments: "",
   });
 
-//   console.log(updateHotels.comments);
+  //   console.log(updateHotels.comments);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const url = `http://localhost:8000/api/docEvaluation/updateDocEvaluation/${id}`
-        const credentials = { studentGrp, completness, corectness, plagiarism, total, comments }
-        axios.put(url, credentials)
-        .then((res) => {
-         alert("Document Evaluation Updated Successfully!");
-         window.location = "/displayDocMarks";
-       })
-       .catch((error) => {
-         console.log(error.message);
-         alert(error.message);
-       })
+    const url = `http://localhost:8000/api/docEvaluation/updateDocEvaluation/${id}`;
+    const credentials = {
+      studentGrp,
+      completness,
+      corectness,
+      plagiarism,
+      total,
+      comments,
+    };
+    axios
+      .put(url, credentials)
+      .then((res) => {
+        alert("Document Evaluation Updated Successfully!");
+        window.location = "/displayDocMarks";
+      })
+      .catch((error) => {
+        console.log(error.message);
+        alert(error.message);
+      });
   };
 
   return (
@@ -71,7 +79,7 @@ useEffect(() => {
               defaultValue={updateDocDetails.studentGrp}
               className={styles.input}
             />
-            
+
             <label>Completeness</label>
             <input
               type="text"
@@ -123,7 +131,7 @@ useEffect(() => {
             />
             {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.green_btn}>
-              Update
+              Add Hotel
             </button>
           </form>
         </div>
