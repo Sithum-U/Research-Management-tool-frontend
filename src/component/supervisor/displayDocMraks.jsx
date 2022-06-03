@@ -285,7 +285,7 @@ export default function BranchDetails() {
                       <TableCell>
                         <Button
                           type="submit"
-                          variant="primary"
+                          variant="danger"
                           onClick={(e) => {
                             delet(docMarks._id);
                           }}
