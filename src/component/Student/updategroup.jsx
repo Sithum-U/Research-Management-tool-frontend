@@ -76,9 +76,13 @@ const Updategroup = () => {
         <div className={styles.card}>
           <div className={styles.signup_form_container5}>
             <div className={styles.right6}>
-              <form className={styles.form_container1} onSubmit={handleSubmit}>
-                <h1>Update Group Details</h1>
 
+
+              <form className={styles.form_container1} onSubmit={handleSubmit}>
+                <br></br>
+                <br></br>
+                <h1>Update Group Details</h1>
+                <br></br>
                 <label>Group Name</label>
                 <input
                   type="text"
@@ -180,6 +184,7 @@ const Updategroup = () => {
         </div>
       </main>
     </div>
+
   );
 };
 

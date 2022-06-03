@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     position: "relative",
   },
-  
+
   layout: {
     width: "auto",
     marginLeft: theme.spacing(2),
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
       width: "25ch",
     },
   },
- 
+
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
@@ -56,8 +56,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Create() {
 
-  const  [createGroup, setcreateGroup] = useState({groupName :"",member1:"",member2:"",member3:"",member4:"",it1:"",it2:"",it3:"",it4:""})
- 
+  const [createGroup, setcreateGroup] = useState({ groupName: "", member1: "", member2: "", member3: "", member4: "", it1: "", it2: "", it3: "", it4: "" })
+
   // const [groupName, setgroupName] = useState("");
   // const [member1, setmember1] = useState("");
   // const [member2, setmember2] = useState("");
@@ -67,7 +67,7 @@ export default function Create() {
   // const [it2, setit2] = useState("");
   // const [it3, setit3] = useState("");
   // const [it4, setit4] = useState("");
-  
+
 
   // const [value, setValue] = React.useState("");
 
@@ -84,7 +84,7 @@ export default function Create() {
   //   it2: "",
   //   it3: "",
   //   it4: "",
-    
+
   // });
   // const [student, setStudent] = useState([]);
 
@@ -94,7 +94,7 @@ export default function Create() {
     axios
       .post("http://localhost:8000/creategroup", createGroup)
       .then((res) => {
-        alert("Group Created Successfully!");     
+        alert("Group Created Successfully!");
       })
       .catch((error) => {
         console.log(error.message);
@@ -114,19 +114,19 @@ export default function Create() {
   return (
     <React.Fragment>
       <main className={styles.signup_container1}>
-        <div className={styles.signup_form_container1}>
+        <div className={styles.signup_form_container3}>
           <div className={styles.right6}>
             <center>
               <Container component="main" maxWidth="xs">
                 <Typography component="h1" variant="h4">
-                <br></br>
+                  <br></br>
                   <center> Create a Group</center>
                 </Typography>
                 <br />
 
 
                 <form
-                className={classes.form}
+                  className={classes.form}
                   onSubmit={e => handleSubmit(e)}
                 >
                   <Grid container spacing={2}>
@@ -140,165 +140,166 @@ export default function Create() {
                         name="Group Name"
                         autoComplete="groupName"
                         autoFocus
-                        onChange={e => setcreateGroup({ ...createGroup,groupName:e.target.value })} 
+                        onChange={e => setcreateGroup({ ...createGroup, groupName: e.target.value })}
                       />
                     </Grid>
-                    <div className="container">
-            <h5 className="group">Group members</h5>
 
-            <table>
-                <thead>
-                <tr>
-                <th></th>
-                    <th>Name</th>
-                    <th>ITNumber</th>
-               </tr>
-                </thead>
-                <tbody>
-                    {
+                    <div className="container">
+                      <br></br>
+                      <h5 className="group">Group members</h5>
+                      <br></br>
+
+                      <table>
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>ITNumber</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {
                             <tr>
-                            <td>Member1 (Leader)</td>
-                                <td><TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="member1"
-                        // label=" Name"
-                        name=" Name"
-                        autoComplete="member1"
-                        autoFocus
-                        onChange={e => setcreateGroup({ ...createGroup,member1:e.target.value })} 
-                      /></td>
-                       <td>{<TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="it1"
-                        // label="ITNumber"
-                        name="ITNumber"
-                        autoComplete="it1"
-                        autoFocus
-                        onChange={e => setcreateGroup({ ...createGroup,it1:e.target.value })} 
-                      />
-                      }
-                      </td>
-                          <td/>                               
+                              <td>Member1 (Leader)</td>
+                              <td><TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="member1"
+                                // label=" Name"
+                                name=" Name"
+                                autoComplete="member1"
+                                autoFocus
+                                onChange={e => setcreateGroup({ ...createGroup, member1: e.target.value })}
+                              /></td>
+                              <td>{<TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="it1"
+                                // label="ITNumber"
+                                name="ITNumber"
+                                autoComplete="it1"
+                                autoFocus
+                                onChange={e => setcreateGroup({ ...createGroup, it1: e.target.value })}
+                              />
+                              }
+                              </td>
+                              <td />
                             </tr>
-                     }
-                </tbody>
-                <tbody>
-                    {
-                                               <tr>
-                            <td>Member2</td>
-                                <td><TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="member2"
-                        // label=" Name"
-                        name=" Name"
-                        autoComplete="member2"
-                        autoFocus
-                        onChange={e => setcreateGroup({ ...createGroup,member2:e.target.value })} 
-                      /></td>                     
-                       <td>{<TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="it2"
-                        // label="ITNumber"
-                        name="ITNumber"
-                        autoComplete="it2"
-                        autoFocus
-                        onChange={e => setcreateGroup({ ...createGroup,it2:e.target.value })} 
-                      />
-                      }
-                      </td>
-                                <td/>
-                              </tr>                 
-                    }
-                </tbody>
-                <tbody>
-                    {
+                          }
+                        </tbody>
+                        <tbody>
+                          {
                             <tr>
-                            <td>Member3</td>
-                                <td><TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="member3"
-                        // label=" Name"
-                        name=" Name"
-                        autoComplete="member3"
-                        autoFocus
-                        onChange={e => setcreateGroup({ ...createGroup,member3:e.target.value })} 
-                      /></td>
-                       <td>{<TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="it3"
-                        // label="ITNumber"
-                        name="ITNumber"
-                        autoComplete="it3"
-                        autoFocus
-                        onChange={e => setcreateGroup({ ...createGroup,it3:e.target.value })} 
-                      />
-                      }
-                      </td>
-                                <td/>                               
-                            </tr>    
-                    }
-                </tbody>
-                <tbody>
-                    {                           <tr>
+                              <td>Member2</td>
+                              <td><TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="member2"
+                                // label=" Name"
+                                name=" Name"
+                                autoComplete="member2"
+                                autoFocus
+                                onChange={e => setcreateGroup({ ...createGroup, member2: e.target.value })}
+                              /></td>
+                              <td>{<TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="it2"
+                                // label="ITNumber"
+                                name="ITNumber"
+                                autoComplete="it2"
+                                autoFocus
+                                onChange={e => setcreateGroup({ ...createGroup, it2: e.target.value })}
+                              />
+                              }
+                              </td>
+                              <td />
+                            </tr>
+                          }
+                        </tbody>
+                        <tbody>
+                          {
+                            <tr>
+                              <td>Member3</td>
+                              <td><TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="member3"
+                                // label=" Name"
+                                name=" Name"
+                                autoComplete="member3"
+                                autoFocus
+                                onChange={e => setcreateGroup({ ...createGroup, member3: e.target.value })}
+                              /></td>
+                              <td>{<TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="it3"
+                                // label="ITNumber"
+                                name="ITNumber"
+                                autoComplete="it3"
+                                autoFocus
+                                onChange={e => setcreateGroup({ ...createGroup, it3: e.target.value })}
+                              />
+                              }
+                              </td>
+                              <td />
+                            </tr>
+                          }
+                        </tbody>
+                        <tbody>
+                          {<tr>
                             <td>Member4</td>
-                                <td><TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="member4"
-                        // label=" Name"
-                        name=" Name"
-                        autoComplete="member4"
-                        autoFocus
-                        onChange={e => setcreateGroup({ ...createGroup,member4:e.target.value })} 
-                      /></td>
-                       <td>{<TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="it4"
-                        // label="ITNumber"
-                        name="ITNumber"
-                        autoComplete="it4"
-                        autoFocus
-                        onChange={e => setcreateGroup({ ...createGroup,it4:e.target.value })} 
-                      />
-                      }
-                      </td>
-                          <td/>
-                                <tr>                            
-                                </tr>
-                            </tr>                           
-                    }
-                </tbody>
-            </table> <br></br>
-        </div>   
-                  </Grid>               
-                  
+                            <td><TextField
+                              variant="outlined"
+                              required
+                              fullWidth
+                              id="member4"
+                              // label=" Name"
+                              name=" Name"
+                              autoComplete="member4"
+                              autoFocus
+                              onChange={e => setcreateGroup({ ...createGroup, member4: e.target.value })}
+                            /></td>
+                            <td>{<TextField
+                              variant="outlined"
+                              required
+                              fullWidth
+                              id="it4"
+                              // label="ITNumber"
+                              name="ITNumber"
+                              autoComplete="it4"
+                              autoFocus
+                              onChange={e => setcreateGroup({ ...createGroup, it4: e.target.value })}
+                            />
+                            }
+                            </td>
+                            <td />
+                            <tr>
+                            </tr>
+                          </tr>
+                          }
+                        </tbody>
+                      </table> <br></br>
+                    </div>
+                  </Grid>
+
                   <Link to="/dashboard">
-                    <Button className={styles.green_btn}>Back</Button>
+                    <Button className={styles.green_btn6}>Back</Button>
                   </Link>
-                  {/* <Link to="/find"> */}
-                    <Button type="submit" className={styles.green_btn}>Create Group</Button>
-                  {/* </Link> */}
+                  <Button type="submit" className={styles.green_btn6}>Create Group</Button>
                   <Link to="/view">
-                    <Button className={styles.green_btn}>Next</Button>
+                    <Button className={styles.green_btn6}>Next</Button>
                   </Link>
-                  
-                
-                
+
+
+
 
                 </form>
               </Container>
