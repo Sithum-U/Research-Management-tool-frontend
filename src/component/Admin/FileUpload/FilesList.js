@@ -4,7 +4,8 @@ import axios from "axios";
 // import { API_URL } from "../utils/constants";
 import Header from "../../Admin/FileUpload/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../Admin/FileUpload/styles.scss";
+import "./style.css";
+import AdminPage from "../AdminPage/AdminPage";
 
 const FilesList = () => {
   const [filesList, setFilesList] = useState([]);
@@ -41,48 +42,53 @@ const FilesList = () => {
   };
 
   return (
-    <div className="container">
-      <Header />
-      <div className="main-content">
-        <div className="files-container">
-          {errorMsg && <p className="errorMsg">{errorMsg}</p>}
-          <table className="files-table">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Download File</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filesList.length > 0 ? (
-                filesList.map(
-                  ({ _id, title, description, file_path, file_mimetype }) => (
-                    <tr key={_id}>
-                      <td className="file-title">{title}</td>
-                      <td className="file-description">{description}</td>
-                      <td>
-                        <a
-                          href="#/"
-                          onClick={() =>
-                            downloadFile(_id, file_path, file_mimetype)
-                          }
-                        >
-                          Download
-                        </a>
-                      </td>
-                    </tr>
-                  )
-                )
-              ) : (
+    <div>
+      <AdminPage />
+
+      <div className="container">
+        <div className="main-content">
+          <div className="files-container">
+            {errorMsg && <p className="errorMsg">{errorMsg}</p>}
+            <h1>Presentation/ Doc Tempaltes and Marking Schemas </h1>
+            <table className="files-table">
+              <thead>
                 <tr>
-                  <td colSpan={3} style={{ fontWeight: "300" }}>
-                    No files found. Please add some.
-                  </td>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Download File</th>
                 </tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {filesList.length > 0 ? (
+                  filesList.map(
+                    ({ _id, title, description, file_path, file_mimetype }) => (
+                      <tr key={_id}>
+                        <td className="file-title">{title}</td>
+                        <td className="file-description">{description}</td>
+                        <td>
+                          <button
+                            className="button"
+                            href="#/"
+                            onClick={() =>
+                              downloadFile(_id, file_path, file_mimetype)
+                            }
+                          >
+                            Download
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                  )
+                ) : (
+                  <tr>
+                    <td colSpan={3} style={{ fontWeight: "300" }}>
+                      No files found. Please add some.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

@@ -23,15 +23,19 @@ import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
 import StorageIcon from "@mui/icons-material/Storage";
+import Footer from "../../Layout/Footer";
+import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
+import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
+import ListIcon from "@mui/icons-material/List";
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 
 export default function ClippedDrawer() {
   return (
     <div>
       <div class="topnav">
         <a className="name" href="#home">
-          Hotel.lk
+          Research Tool
         </a>
         <a href="/login">Logout</a>
         <Link to="/signup">Sign In</Link>
@@ -46,12 +50,12 @@ export default function ClippedDrawer() {
         </a>
       </div>
       <Box sx={{ display: "flex" }}>
-        //side Pane
         <Drawer
           variant="permanent"
           sx={{
             width: drawerWidth,
             flexShrink: 0,
+
             [`& .MuiDrawer-paper`]: {
               width: drawerWidth,
               boxSizing: "border-box",
@@ -59,16 +63,23 @@ export default function ClippedDrawer() {
           }}
         >
           <Toolbar />
-          <Box sx={{ overflow: "auto" }}>
+          <Box
+            sx={{
+              overflow: "auto",
+              bgcolor: "text.disabled",
+              margin: "-64px",
+              // marginLeft: "0px",
+            }}
+          >
             <center>
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAPlAD2qUdnIjsdA7teiIQYuBq2arEkAhVBiQhkTClKun34iJ7VhM22ZYO277RirTV0qw&usqp=CAU"
+                src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
                 alt="Avatar"
                 className="rounded-circle"
               />
 
               <List>
-                {["Inbox", "Starred", "Send email", "Drafts"].map(
+                {["Admin Page", "Starred", "Send email", "Drafts"].map(
                   (text, index) => (
                     <ListItem key={text} disablePadding>
                       <ListItemButton>
@@ -92,8 +103,6 @@ export default function ClippedDrawer() {
             <Divider />
             <List>
               <center>
-                <br />
-
                 <Grid container spacing={4}>
                   <Grid item xs={12}>
                     <Link
@@ -152,40 +161,37 @@ export default function ClippedDrawer() {
                       )}
                     </PopupState>
                   </Grid>
-                </Grid>
-                <br />
-                <Grid item xs={12}>
-                  <Link to="/viewUserRoles" style={{ textDecoration: "none" }}>
-                    <ListItem variant="contained">
-                      View User Roles
-                      <ListItemIcon sm={12}>
-                        <MailIcon />
-                      </ListItemIcon>
-                    </ListItem>
-                  </Link>
-                </Grid>
-                <Grid item xs={12}>
-                  <Link
-                    to="/uploadDocuments"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <ListItem variant="contained">
-                      Upload Documents
-                      <ListItemIcon sm={12}>
-                        <MailIcon />
-                      </ListItemIcon>
-                    </ListItem>
-                  </Link>
-                </Grid>
-                <Grid item xs={12}>
-                  <Link to="/documentlist" style={{ textDecoration: "none" }}>
-                    <ListItem variant="contained">
-                      Document List
-                      <ListItemIcon sm={12}>
-                        <MailIcon />
-                      </ListItemIcon>
-                    </ListItem>
-                  </Link>
+
+                  <br />
+                  <Grid item xs={12}>
+                    <Link
+                      to="/viewUserRoles"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Button variant="contained">
+                        {" "}
+                        <SupervisedUserCircleIcon />
+                        _View User Roles
+                      </Button>
+                    </Link>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Link
+                      to="/uploadDocuments"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Button variant="contained">
+                        <DriveFolderUploadIcon /> _Upload Documents
+                      </Button>
+                    </Link>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Link to="/documentlist" style={{ textDecoration: "none" }}>
+                      <Button variant="contained">
+                        <ListIcon />_ Document List
+                      </Button>
+                    </Link>
+                  </Grid>
                 </Grid>
               </center>
             </List>
@@ -195,6 +201,7 @@ export default function ClippedDrawer() {
           <Toolbar />
         </Box>
       </Box>
+      <Footer />
     </div>
   );
 }

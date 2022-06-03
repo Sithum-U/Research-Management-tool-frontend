@@ -1,12 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./style.css";
+// import "./style.scss";
 
 const Header = () => {
   return (
-    // <div className="topnav">
-    <div>
+    <div className="header">
+      {/* // <div> */}
       <h1>File Upload And Download</h1>
       <nav>
         <NavLink activeClassName="active" to="/uploadDocuments" exact={true}>

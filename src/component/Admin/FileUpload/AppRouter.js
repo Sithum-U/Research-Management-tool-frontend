@@ -5,7 +5,8 @@ import axios from "axios";
 // import { API_URL } from "../utils/constants";
 import Header from "../../Admin/FileUpload/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../Admin/FileUpload/styles.scss";
+import "./style.css";
+import AdminPage from "../AdminPage/AdminPage";
 
 const AppRouter = (props) => {
   const [file, setFile] = useState(null); // state for storing actual image
@@ -77,84 +78,89 @@ const AppRouter = (props) => {
   };
 
   return (
-    <div className="container">
-      <Header />
-      <div className="main-content">
-        <React.Fragment>
-          <Form className="search-form" onSubmit={handleOnSubmit}>
-            {errorMsg && <p className="errorMsg">{errorMsg}</p>}
-            <Row>
-              <Col>
-                <Form.Group controlId="title">
-                  <Form.Control
-                    type="text"
-                    name="title"
-                    value={state.title || ""}
-                    placeholder="Enter title"
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Form.Group controlId="description">
-                  <Form.Control
-                    type="text"
-                    name="description"
-                    value={state.description || ""}
-                    placeholder="Enter description"
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
-            <div className="upload-section">
-              <Dropzone
-                onDrop={onDrop}
-                onDragEnter={() => updateBorder("over")}
-                onDragLeave={() => updateBorder("leave")}
-              >
-                {({ getRootProps, getInputProps }) => (
-                  <div
-                    {...getRootProps({ className: "drop-zone" })}
-                    ref={dropRef}
-                  >
-                    <input {...getInputProps()} />
-                    <p>Drag and drop a file OR click here to select a file</p>
-                    {file && (
-                      <div>
-                        <strong>Selected file:</strong> {file.name}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </Dropzone>
-              {previewSrc ? (
-                isPreviewAvailable ? (
-                  <div className="image-preview">
-                    <img
-                      className="preview-image"
-                      src={previewSrc}
-                      alt="Preview"
+    <div>
+      <AdminPage />
+      <div className="container">
+        {/* <Header /> */}
+        <h1>Upload Presentation/ Doc Tempaltes and Marking Schemas</h1>
+
+        <div className="main-content">
+          <React.Fragment>
+            <Form className="search-form" onSubmit={handleOnSubmit}>
+              {errorMsg && <p className="errorMsg">{errorMsg}</p>}
+              <Row>
+                <Col>
+                  <Form.Group controlId="title">
+                    <Form.Control
+                      type="text"
+                      name="title"
+                      value={state.title || ""}
+                      placeholder="Enter File Name"
+                      onChange={handleInputChange}
                     />
-                  </div>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Form.Group controlId="description">
+                    <Form.Control
+                      type="text"
+                      name="description"
+                      value={state.description || ""}
+                      placeholder="Enter File Description"
+                      onChange={handleInputChange}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <div className="upload-section">
+                <Dropzone
+                  onDrop={onDrop}
+                  onDragEnter={() => updateBorder("over")}
+                  onDragLeave={() => updateBorder("leave")}
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <div
+                      {...getRootProps({ className: "drop-zone" })}
+                      ref={dropRef}
+                    >
+                      <input {...getInputProps()} />
+                      <p>Drag and drop a file OR click here to select a file</p>
+                      {file && (
+                        <div>
+                          <strong>Selected file:</strong> {file.name}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </Dropzone>
+                {previewSrc ? (
+                  isPreviewAvailable ? (
+                    <div className="image-preview">
+                      <img
+                        className="preview-image"
+                        src={previewSrc}
+                        alt="Preview"
+                      />
+                    </div>
+                  ) : (
+                    <div className="preview-message">
+                      <p>No preview available for this file</p>
+                    </div>
+                  )
                 ) : (
                   <div className="preview-message">
-                    <p>No preview available for this file</p>
+                    <p>Image preview will be shown here after selection</p>
                   </div>
-                )
-              ) : (
-                <div className="preview-message">
-                  <p>Image preview will be shown here after selection</p>
-                </div>
-              )}
-            </div>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </Form>
-        </React.Fragment>
+                )}
+              </div>
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
+          </React.Fragment>
+        </div>
       </div>
     </div>
   );
