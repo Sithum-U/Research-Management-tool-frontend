@@ -7,9 +7,7 @@ const Docsubmit = () => {
   const [data, setData] = useState({
     docUrl: "",
   });
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-
+ 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
   };
@@ -17,9 +15,9 @@ const Docsubmit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:9000/api/hotels/add";
+      const url = "http://localhost:8000/docsubmit/";
       const { data: res } = await axios.post(url, data);
-      navigate("/admin");
+      // navigate("/admin");
       console.log(res.message);
     } catch (error) {
       if (
@@ -27,7 +25,7 @@ const Docsubmit = () => {
         error.response.status >= 400 &&
         error.response.status <= 500
       ) {
-        setError(error.response.data.message);
+       
       }
     }
   };
@@ -40,17 +38,20 @@ const Docsubmit = () => {
             <h1>Document Submission</h1>
             <br></br>
 
-            <input
-              type="file"
-              placeholder="Document"
-              name="Document"
-              onChange={handleChange}
-              value={data.docUrl}
-              required
-              className={styles.input}
-            />
+
+<input
+type="file"
+placeholder="Document"
+name="docUrl"
+onChange={handleChange}
+value={data.docUrl}
+required
+className={styles.input}
+/>
+
+           
              <br></br>
-            {error && <div className={styles.error_msg}>{error}</div>}
+            
             <button type="submit" className={styles.green_btn}>
               Submit
             </button>
@@ -64,8 +65,7 @@ const Docsubmit = () => {
               NEXT
             </button>
           </Link>
-          
-          </form>
+           </form>
         </div>
       </div>
     </div>

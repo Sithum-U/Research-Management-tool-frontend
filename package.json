@@ -8,7 +8,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint ./ --ignore-path .gitignore",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --write \"{,!(node_modules)/**/}*.js\""
   },
   "keywords": [],
   "author": "",
@@ -25,7 +28,6 @@
     "axios": "^0.27.2",
     "jspdf": "^2.5.1",
     "mdbreact": "^5.2.0",
-    "npm": "^8.11.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-icons": "^4.4.0",
@@ -51,5 +53,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.16.0",
+    "eslint-plugin-react": "^7.30.0",
+    "install": "^0.13.0",
+    "npm": "^8.12.1",
+    "prettier": "^2.6.2"
   }
 }

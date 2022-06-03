@@ -18,9 +18,9 @@ const Dashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:9000/api/hotels/add";
+      const url = "http://localhost:9000/api/students/create";
       const { data: res } = await axios.post(url, data);
-      navigate("/add");
+      navigate("/create");
       console.log(res.message);
     } catch (error) {
       if (
@@ -71,15 +71,7 @@ const Dashboard = () => {
               View Presentation Marks
             </button>
           </Link>
-          <br></br>
-
-          
-           
-                  
-                 
-                  
-            
-            
+          <br></br>         
           </form>
         </div>
       </div>
