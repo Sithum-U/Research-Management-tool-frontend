@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import NativeSelect from "@mui/material/NativeSelect";
 
-const AddDocumentMarks = () => {
+const Signup = (props) => {
   const [data, setData] = useState({
-    studentGrp: "",
-    completness: "",
-    corectness: "",
-    plagiarism: "",
-    total: "",
-    comments: "",
+    username: "",
+    password: "",
+    email: "",
+    phone: "",
+    role: "",
+    researchField: "",
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -22,9 +25,9 @@ const AddDocumentMarks = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:8000/api/docEvaluation/add";
+      const url = "http://localhost:8000/api/auth/register";
       const { data: res } = await axios.post(url, data);
-      navigate("/displayDocMarks");
+      navigate("/login");
       console.log(res.message);
     } catch (error) {
       if (
@@ -40,67 +43,80 @@ const AddDocumentMarks = () => {
   return (
     <div className={styles.signup_container}>
       <div className={styles.signup_form_container}>
+        <div className={styles.left}>
+          <h4>Already have an account ? </h4>
+          <hr />
+          <Link to="/login">
+            <button type="button" className={styles.white_btn}>
+              Sign In
+            </button>
+          </Link>
+        </div>
         <div className={styles.right}>
           <form className={styles.form_container} onSubmit={handleSubmit}>
-            <h1>Document Evaluation</h1>
+            <h1>REGISTER</h1>
 
             <input
-              type="text"
-              placeholder="Student Group"
-              name="studentGrp"
+              type="username"
+              placeholder="Username"
+              name="username"
               onChange={handleChange}
-              value={data.studentGrp}
+              value={data.username}
               required
               className={styles.input}
             />
             <input
-              type="text"
-              placeholder="Completeness"
-              name="completness"
+              type="password"
+              placeholder="Password"
+              name="password"
               onChange={handleChange}
-              value={data.completness}
+              value={data.password}
               required
               className={styles.input}
             />
             <input
-              type="text"
-              placeholder="Correctness"
-              name="corectness"
+              type="email"
+              placeholder="Email"
+              name="email"
               onChange={handleChange}
-              value={data.corectness}
+              value={data.email}
               required
               className={styles.input}
             />
             <input
-              type="text"
-              placeholder="Plagiarism"
-              name="plagiarism"
+              type="phone"
+              placeholder="Phone"
+              name="phone"
               onChange={handleChange}
-              value={data.plagiarism}
+              value={data.phone}
               required
               className={styles.input}
             />
             <input
-              type="text"
-              placeholder="Total Marks"
-              name="total"
+              type="role"
+              placeholder="Role"
+              name="role"
               onChange={handleChange}
-              value={data.total}
+              value={data.role}
               required
               className={styles.input}
             />
-            <input
-              type="text"
-              placeholder="Comments (optional)"
-              name="comments"
-              onChange={handleChange}
-              value={data.comments}
-              required
-              className={styles.input}
-            />
+
+            {data.role == "supervisor" || data.role == "cosupervisor" ? (
+              <input
+                type="researchField"
+                placeholder="Research Field"
+                name="researchField"
+                onChange={handleChange}
+                value={data.researchField}
+                required
+                className={styles.input}
+              />
+            ) : null}
+
             {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.green_btn}>
-              Add Evaluation
+              Sign Up
             </button>
           </form>
         </div>
@@ -109,4 +125,4 @@ const AddDocumentMarks = () => {
   );
 };
 
-export default AddDocumentMarks;
+export default Signup;
