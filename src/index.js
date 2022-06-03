@@ -3,7 +3,7 @@ import ReactDom from "react-dom";
 
 import App from "./App";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "../src/component/Admin/FileUpload/styles.scss";
+// import "../src/component/Admin/FileUpload/styles.scss";
 
 ReactDom.render(<App />, document.getElementById("root"));
 
