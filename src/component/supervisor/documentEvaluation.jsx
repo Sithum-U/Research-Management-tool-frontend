@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
+import Footer from "../Layout/Footer";
 
 const AddDocumentMarks = () => {
   const [data, setData] = useState({
@@ -38,6 +39,7 @@ const AddDocumentMarks = () => {
   };
 
   return (
+    <div>
     <div className={styles.signup_container}>
       <div className={styles.signup_form_container}>
         <div className={styles.right}>
@@ -105,6 +107,8 @@ const AddDocumentMarks = () => {
           </form>
         </div>
       </div>
+    </div>
+    <Footer />
     </div>
   );
 };

@@ -21,7 +21,7 @@ import { MDBCol } from "mdbreact";
 import "./styles.css";
 import styles from "./styles.module.css";
 
-// import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 // import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBCardHeader } from 'mdb-react-ui-kit';
 
 const columns = [
@@ -29,39 +29,39 @@ const columns = [
     id: "studentGrp",
     label: "Student Group",
     minWidth: 100,
-    align: "center",
+    align: "left",
     main: "#f44336",
   },
   {
     id: "completness",
     label: "Completeness",
     minWidth: 170,
-    align: "center",
+    align: "left",
   },
   {
     id: "corectness",
     label: "Correctness",
     minWidth: 170,
-    align: "center",
+    align: "left",
   },
 
   {
     id: "plagiarism",
     label: "Plagiarism",
     minWidth: 170,
-    align: "center",
+    align: "left",
   },
   {
     id: "total",
     label: "Total Marks",
     minWidth: 170,
-    align: "center",
+    align: "left",
   },
   {
     id: "comments",
     label: "Comments",
     minWidth: 170,
-    align: "center",
+    align: "left",
   }
 ];
 
@@ -277,21 +277,21 @@ export default function BranchDetails() {
                         <Link
                           to={"/updateDocMarks/" + docMarks._id}
                           type="submit"
-                          class="btn btn-primary"
+                          className={styles.button}
                         >
                           <i class="fa fa-trash"></i> UPDATE
                         </Link>
                       </TableCell>
                       <TableCell>
-                        <button
+                        <Button
                           type="submit"
-                          class="btn btn-danger"
+                          variant="primary"
                           onClick={(e) => {
                             delet(docMarks._id);
                           }}
                         >
                           <i class="fa fa-trash"></i> DELETE
-                        </button>
+                        </Button>
                       </TableCell>
                     </TableRow>
                   ))}
