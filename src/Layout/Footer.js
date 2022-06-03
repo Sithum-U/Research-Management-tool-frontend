@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./Footer.css"
 function Footer(){
 
     return <div>
@@ -9,7 +9,7 @@ function Footer(){
 			<div className="row">
 				<div className="col-lg-5 col-md-12 col-sm-12">
 					<img src="assets/images/logo-white.png" className="logo" alt=""/>
-					<div className="text">Research Tool Management</div>
+					<div className="text">Research Tool Management System</div>
 				</div>
 				<div className="col-lg-2 col-md-4 col-sm-6 col-6">
 					<h5>Helpful Links</h5>
@@ -32,8 +32,8 @@ function Footer(){
 				<div className="col-lg-3 col-md-4 col-sm-12">
 					<h5>Contact Us</h5>
 					<div className="address">
-						<p>455 West Orchard Street<br/>Kings Mountain, NC 28086</p>
-						<p>Phone: (272) 211-7370</p>
+						<p>22A, 6th Lane,<br/>Colombo 03, Sri Lanka</p>
+						<p>Phone: (947) 456-7370</p>
 						<p><span>E-Mail:</span><a href="#">research@tool.com</a></p>
 					</div>
 				</div>

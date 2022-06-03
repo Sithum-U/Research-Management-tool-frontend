@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBCardHeader } from 'mdb-react-ui-kit';
 import axios from 'axios'
+import Footer from "../../Layout/Footer";
 
 function Mail() {
     //send email
@@ -46,10 +47,10 @@ function Mail() {
                                 )}
                             </MDBCardText>
                         </MDBCardBody>
-                    </MDBCard>
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    </MDBCard><br/><br/><br/><br/><br/><br/><br/>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 }

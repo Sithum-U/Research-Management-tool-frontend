@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Modal } from 'react-bootstrap';
 import axios from 'axios'
 import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBCardHeader } from 'mdb-react-ui-kit';
-import Footer from "../Footer";
-import "./App.css";
+import Footer from "../../Layout/Footer";
 
 const PanelMember = () => {
     const [panelFeedback, setpanelFeedback] = useState([]);
@@ -38,6 +37,9 @@ const PanelMember = () => {
 
     //search filter
     const [search, setSearch] = useState('');
+
+    const [sent, setSent] = useState(false);
+    const [text, setText] = useState("");
 
     useEffect(() => {
         fetch("http://localhost:8000/panelMember/")
@@ -108,8 +110,6 @@ const PanelMember = () => {
             })
     }
 
-    const [sent, setSent] = useState(false);
-    const [text, setText] = useState("");
     //handle sending email
     const handleSend = async () => {
         setSent(true)
@@ -175,7 +175,7 @@ const PanelMember = () => {
                                                                 <td>{item.email}</td>
                                                                 <td>{item.status}</td>
                                                                 <td style={{ minWidth: 190 }}>
-                                                                    <Button size="sm" variant="primary" onClick={() => { handleViewShow(setRowData(item)) }}>View</Button>|
+                                                                    <Button size="sm" variant="success" onClick={() => { handleViewShow(setRowData(item)) }}>View</Button>|
                                                                     <Button size="sm" variant="warning" onClick={() => { handleEditShow(setRowData(item), setId(item._id)) }}>Edit</Button>|
                                                                     <Button size="sm" variant="danger" onClick={() => { handleViewShow(setRowData(item), setId(item._id), setDelete(true)) }}>Delete</Button>
                                                                 </td>

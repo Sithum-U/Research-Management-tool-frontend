@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 'mdb-react-ui-kit';
-import Footer from "../Footer";
+import Footer from "../../Layout/Footer";
 
 const PanelDash = () => {
     return (
@@ -20,6 +20,7 @@ const PanelDash = () => {
                         />
                         <MDBCardBody>
                             <MDBCardTitle>Send Mail</MDBCardTitle>
+                            <p>You can send feedback as an email. Click Here...</p>
                             <MDBCardText>
                                 <Link to="/mail">
                                     <Button variant="primary">Go</Button>
@@ -37,6 +38,7 @@ const PanelDash = () => {
                         />
                         <MDBCardBody>
                             <MDBCardTitle>Topic Evaluation</MDBCardTitle>
+                            <p>You can give feedbacks for topic evaluations...</p>
                             <MDBCardText>
                                 <Link to="/panelFeedback">
                                     <Button variant="primary">Go</Button>
@@ -54,6 +56,7 @@ const PanelDash = () => {
                         />
                         <MDBCardBody>
                             <MDBCardTitle>Evaluate Presentations</MDBCardTitle>
+                            <p>Please analyze the presentation marks...</p>
                             <MDBCardText>
                                 <Link to="/presentation">
                                     <Button variant="primary">Go</Button>
