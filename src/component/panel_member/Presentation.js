@@ -275,7 +275,7 @@ const Presentation = () => {
                             <div className="form-goup mt-3">
                                 <input type="text" className="form-control" onChange={(e) => setOveroll(e.target.value)} placeholder="Please enter Overoll" />
                             </div>
-                            <Button type="submit" className="btn btn-success mt-4" onClick={handleSubmit}>Add Feedback</Button>
+                            <Button type="submit" className="btn btn-success mt-4" onClick={handleSubmit}>Add Marks</Button>
                         </div>
                     </Modal.Body>
                     <Modal.Footer>
@@ -283,10 +283,10 @@ const Presentation = () => {
                     </Modal.Footer>
 
                 </Modal>
-
             </div>
-            <Footer/>
+            
         </div>
+        
 
     );
 };
