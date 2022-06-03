@@ -1,20 +1,17 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 
-
 const Dashboard = () => {
-  const [data, setData] = useState({
-    
-  });
+  const [data, setData] = useState({});
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -38,40 +35,42 @@ const Dashboard = () => {
       <div className={styles.signup_form_container2}>
         <div className={styles.right2}>
           <form className={styles.form_container2} onSubmit={handleSubmit}>
+            <br></br>
+            <br></br>
             <h1>Dashboard</h1>
             <br></br>
             <br></br>
 
             <Link to="/create">
-            <button
-              type="button"
-              variant="outline-info"
-              className={styles.green_btn1}
-            >
-              Create a Group
-            </button>
-          </Link>
-          <br></br>
-          <Link to="#">
-            <button
-              type="button"
-              variant="outline-info"
-              className={styles.green_btn1}
-            >
-              Download Template
-            </button>
-          </Link>
-<br></br>
-          <Link to="#">
-            <button
-              type="button"
-              variant="outline-info"
-              className={styles.green_btn1}
-            >
-              View Presentation Marks
-            </button>
-          </Link>
-          <br></br>         
+              <button
+                type="button"
+                variant="outline-info"
+                className={styles.green_btn1}
+              >
+                Create a Group
+              </button>
+            </Link>
+            <br></br>
+            <Link to="#">
+              <button
+                type="button"
+                variant="outline-info"
+                className={styles.green_btn1}
+              >
+                Download Template
+              </button>
+            </Link>
+            <br></br>
+            <Link to="#">
+              <button
+                type="button"
+                variant="outline-info"
+                className={styles.green_btn1}
+              >
+                View Presentation Marks
+              </button>
+            </Link>
+            <br></br>
           </form>
         </div>
       </div>
