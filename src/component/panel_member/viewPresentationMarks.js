@@ -17,7 +17,7 @@ const ViewPresentationMarks = () => {
     }, []);
 
     return (
-        <div style={{backgroundImage: `url(${image})` }}>
+        <div style={{backgroundImage: `url(${image})`, height:"500px" }}>
             <div className="container">
                 <center>
                 <br /><br />

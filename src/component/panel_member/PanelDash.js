@@ -65,9 +65,8 @@ const PanelDash = () => {
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>
-            </MDBRow>
+            </MDBRow><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             </div>
-            <br/><br/><br/><br/><br/><br/><br/>
             <Footer/>
         </div>
         

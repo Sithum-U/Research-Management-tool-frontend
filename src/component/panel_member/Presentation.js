@@ -284,7 +284,7 @@ const Presentation = () => {
 
                 </Modal>
             </div>
-            
+            <Footer/>
         </div>
         
 

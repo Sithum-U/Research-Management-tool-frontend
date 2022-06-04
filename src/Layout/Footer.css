@@ -1,12 +1,3 @@
-/* body {
-    background-color: #282c34;
-    color: white;
-    padding: 40px;
-    font-family: Arial;
-    text-align: center;
-  } */
-
-  
 /* 
 ---------------------------------------------
 footer
@@ -101,7 +92,7 @@ footer {
   
   footer .copyright {
     text-align: center;
-    border-top: 1px solid #E5E9F7;
+    border-top: 1px solid #fff;
     margin-top: 30px;
     padding-top: 30px;
     padding-bottom: 30px;
