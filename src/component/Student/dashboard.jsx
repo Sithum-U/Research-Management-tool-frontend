@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
+import Header from "./S_FileUpload/Header";
 
 const Dashboard = () => {
   const [data, setData] = useState({});
@@ -31,8 +32,10 @@ const Dashboard = () => {
   };
 
   return (
+    <div>
+    <Header/>
     <div className={styles.signup_container2}>
-      <div className={styles.signup_form_container2}>
+      <div className={styles.signup_form_container1}>
         <div className={styles.right2}>
           <form className={styles.form_container2} onSubmit={handleSubmit}>
             <br></br>
@@ -45,29 +48,39 @@ const Dashboard = () => {
               <button
                 type="button"
                 variant="outline-info"
-                className={styles.green_btn1}
+                className={styles.green_btn7}
               >
                 Create a Group
               </button>
             </Link>
             <br></br>
-            <Link to="#">
+            <Link to="/documentlist">
               <button
                 type="button"
                 variant="outline-info"
-                className={styles.green_btn1}
+                className={styles.green_btn7}
               >
                 Download Template
               </button>
             </Link>
             <br></br>
-            <Link to="#">
+            <Link to="/viewpresentationmarks">
+              <button
+                type="button"
+                variant="outline-info"
+                className={styles.green_btn7}
+              >
+                View Presentation Marks
+              </button>
+            </Link>
+            <br></br>
+            <Link to="/dispalyStdDocMarks">
               <button
                 type="button"
                 variant="outline-info"
                 className={styles.green_btn1}
               >
-                View Presentation Marks
+                View Document Marks
               </button>
             </Link>
             <br></br>
@@ -75,7 +88,9 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+    </div>
   );
 };
+
 
 export default Dashboard;

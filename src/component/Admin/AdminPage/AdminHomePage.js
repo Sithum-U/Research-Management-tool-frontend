@@ -44,7 +44,7 @@ export default function ClippedDrawer() {
         <Link to="/">Upload Documents</Link>
         <Link to="/">RP </Link>
 
-        <a class="active" href="/adminHomePage">
+        <a class="active" href="/adminPage">
           {" "}
           Home{" "}
         </a>
@@ -163,14 +163,6 @@ export default function ClippedDrawer() {
                                 Document Submission Evaluation
                               </Link>
                             </MenuItem>
-                            <MenuItem onClick={popupState.close}>
-                              <Link
-                                to="/allocatePanelMembers"
-                                style={{ textDecoration: "none" }}
-                              >
-                                Allocate Panel Members
-                              </Link>
-                            </MenuItem>
                           </Menu>
                         </React.Fragment>
                       )}
@@ -216,6 +208,46 @@ export default function ClippedDrawer() {
           <Toolbar />
         </Box>
       </Box>
+      <center>
+        <div className="text">
+          <h1 className="h1">ADMIN PAGE </h1>
+          <h1 className="h2">ONLINE RESEARCH MANAGEMENT TOOL </h1>
+          <br />
+          <br />
+          <br />
+          <p>
+            <center>
+              When you start a research project, it is a good idea to choose a
+              platform at the very beginning that will <div />
+              allow you to collaborate and organizee your data and research
+              outputs.
+              <br /> project management tool that supports researchers
+              throughout their entire project lifecycle. <br />
+              As a collaboration tool, COS helps privately or make the entire
+              project publicly accessible for broad dissemination. <br /> COS
+              enables <div />
+              connections to the many products researchers already use, like
+              Google Drive or other reference management
+              <div /> tools streamlining their process and increasing efficiency
+              as a workflow system.
+              <br />
+              This text is styled with some of the text formatting properties.
+              The heading uses the text-align,
+              <div /> text-transform, and color properties. The paragrap
+              <br />
+              This text is styled with some of the text formatting properties.
+              The <div />
+              heading uses the text-align, text-transform, and color properties.
+              The paragrap
+              <a target="_blank" href="tryit.asp?filename=trycss_text">
+                "Check the above link for more reference"
+              </a>{" "}
+              link.
+            </center>
+          </p>
+        </div>
+      </center>
+
       <Footer />
     </div>
   );

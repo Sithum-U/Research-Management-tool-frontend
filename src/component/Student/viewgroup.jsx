@@ -15,7 +15,8 @@ import Avatar from "@material-ui/core/Avatar";
 import FolderIcon from "@material-ui/icons/Folder";
 import PageviewIcon from "@material-ui/icons/Pageview";
 import AssignmentIcon from "@material-ui/icons/Assignment";
-
+import "./styles.css";
+import styles from "./styles.module.css";
 import { createTheme } from "@material-ui/core/styles";
 import purple from "@material-ui/core/colors/purple";
 import Typography from "@material-ui/core/Typography";
@@ -24,6 +25,7 @@ import { Link } from "react-router-dom";
 import SoloAlert from "soloalert";
 import axios from "axios";
 import { MDBCol } from "mdbreact";
+import Header from "./S_FileUpload/Header";
 
 
 const columns = [
@@ -36,63 +38,61 @@ const columns = [
   },
   {
     id: "member1",
-    label: "member1",
+    label: "Member1(Leader)",
     minWidth: 80,
     align: "left",
 
   },
   {
     id: "member2",
-    label: "member2",
+    label: "Member2",
     minWidth: 80,
     align: "left",
 
   },
   {
     id: "member3",
-    label: "member3",
+    label: "Member3",
     minWidth: 80,
     align: "left",
 
   },
   {
     id: "member4",
-    label: "member4",
+    label: "Member4",
     minWidth: 80,
     align: "left",
 
   },
   {
     id: "it1",
-    label: "it1",
+    label: "Member1 ITNumber",
     minWidth: 80,
     align: "left",
 
   },
   {
     id: "it2",
-    label: "it2",
+    label: "Member2 ITNumber",
     minWidth: 80,
     align: "left",
 
   },
   {
     id: "it3",
-    label: "it3",
+    label: "Member3 ITNumber",
     minWidth: 80,
     align: "left",
 
   },
   {
     id: "it4",
-    label: "it4",
+    label: "Member4 ITNumber",
     minWidth: 80,
     align: "left",
 
   },
-  
 ];
-
 function BranchDetailsTable(name, code, population, size) {
   const density = population / size;
   return { name, code, population, size, density };
@@ -139,15 +139,15 @@ export default function GroupDetails() {
   const [it3, setit3] = useState([]);
   const [it4, setit4] = useState([]);
 
-  
-  
+
+
   useEffect(() => {
     (async () => {
       const result = await axios.get("http://localhost:8000/creategroup");
       setCreategroup(result.data.data);
     })();
   }, []);
-  console.log("hi",creategroup)
+  console.log("hi", creategroup)
 
 
 
@@ -186,7 +186,7 @@ export default function GroupDetails() {
             icon: "error",
             theme: "dark",
             useTransparency: true,
-            onOk: function () {},
+            onOk: function () { },
           });
         }
       },
@@ -197,7 +197,7 @@ export default function GroupDetails() {
           icon: "warning",
           theme: "dark",
           useTransparency: true,
-          onOk: function () {},
+          onOk: function () { },
         });
       },
     });
@@ -231,70 +231,103 @@ export default function GroupDetails() {
 
   return (
     <div>
-      <div className={classes.root2}>
-        <Typography variant="h4" gutterBottom>
-          Group Details
-         
-        </Typography>
+    <Header/>
+    <div>
+      <main className={styles.signup_container3}>
+        <div className={styles.card}>
+          <div className={styles.signup_form_container5}>
+            {/* <div className={styles.right6}> */}
 
-        <Paper className={classes.root}>
-          <TableContainer className={classes.container}>
-            <Table stickyHeader aria-label="sticky table">
-              <TableHead>
-                <TableRow>
-                  {columns.map((column) => (
-                    <TableCell
-                      key={column.id}
-                      align={column.align}
-                      style={{ minWidth: column.minWidth }}
-                    >
-                      {column.label}
-                    </TableCell>
-                  ))}
-                  <TableCell>
-                    Action
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {creategroup.map((sup) => (
+            <div className={classes.root2}>
+              <Typography variant="h3" gutterBottom>
+                Group Details
 
-                  <TableRow key={sup._id}>
-                    <TableCell>{sup.groupName}</TableCell>
-                    <TableCell>{sup.member1}</TableCell>
-                    <TableCell>{sup.member2}</TableCell>
-                    <TableCell>{sup.member3}</TableCell>
-                    <TableCell>{sup.member4}</TableCell>
-                    <TableCell>{sup.it1}</TableCell>
-                    <TableCell>{sup.it2}</TableCell>
-                    <TableCell>{sup.it3}</TableCell>
-                    <TableCell>{sup.it4}</TableCell>
-                    <TableCell>
-                      <Link
-                        to={"/update/" + sup._id}
-                        type="submit"
-                        class="green_btn"
-                      >
-                        <i class="fa fa-trash"></i>  UPDATE
-                      </Link>
-                      
-                      <button
-                          type="submit"
-                          class="green_btn"
-                          onClick={(e) => {
-                            delet(sup._id);
-                          }}
-                        >
-                          <i class="fa fa-trash"></i> DELETE
-                        </button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Paper>
-      </div>
+              </Typography>
+
+              <Paper className={classes.root}>
+                <TableContainer className={classes.container}>
+                  <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                      <TableRow>
+                        {columns.map((column) => (
+                          <TableCell
+                            key={column.id}
+                            align={column.align}
+                            style={{ minWidth: column.minWidth }}
+                          >
+                            {column.label}
+                          </TableCell>
+                        ))}
+                        <TableCell>
+                          Action
+                        </TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {creategroup.map((sup) => (
+
+                        <TableRow key={sup._id}>
+                          <TableCell>{sup.groupName}</TableCell>
+                          <TableCell>{sup.member1}</TableCell>
+                          <TableCell>{sup.member2}</TableCell>
+                          <TableCell>{sup.member3}</TableCell>
+                          <TableCell>{sup.member4}</TableCell>
+                          <TableCell>{sup.it1}</TableCell>
+                          <TableCell>{sup.it2}</TableCell>
+                          <TableCell>{sup.it3}</TableCell>
+                          <TableCell>{sup.it4}</TableCell>
+                          <TableCell>
+
+
+                            <Link to={"/update/" + sup._id}>
+                              <button type="submit" className={styles.green_btn5}>
+                                Update
+                              </button>
+                            </Link>
+                            <br></br>
+                            <br></br>
+
+                            <button type="submit" className={styles.green_btn} variant="primary" onClick={(e) => {
+                              delet(sup._id);
+                            }}
+                            >
+                              <i class="fa fa-trash"></i> DELETE
+                            </button>
+
+
+                            {/* <button
+                              type="submit"
+                              class="green_btn6"
+                              variant="primary"
+                              onClick={(e) => {
+                                delet(sup._id);
+                              }}
+                            >
+                              <i class="fa fa-trash"></i> DELETE
+                            </button> */}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                  <br></br>
+                  <Link to="/create">
+                  <button type="submit" className={styles.green_btn9}>
+                  Back
+                </button>
+                    {/* <Button className={styles.green_btn}>Next</Button> */}
+                  </Link>
+                </TableContainer>
+                
+              </Paper>
+              
+            </div>
+          </div>
+        </div>
+
+      </main>
     </div>
+    </div>
+
   );
 }

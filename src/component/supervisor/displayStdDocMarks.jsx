@@ -21,9 +21,11 @@ import { MDBCol } from "mdbreact";
 import "./styles.css";
 import styles from "./styles.module.css";
 
+
 import Footer from "../Layout/Footer";
 
 import { Button, Modal } from 'react-bootstrap';
+
 // import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBCardHeader } from 'mdb-react-ui-kit';
 
 const columns = [
@@ -114,7 +116,6 @@ export default function MarkssTable() {
         setDocMarks(data);
       });
   }, []);
-
 
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
@@ -232,5 +233,6 @@ export default function MarkssTable() {
     </div>
     <Footer />
     </div>
+
   );
 }

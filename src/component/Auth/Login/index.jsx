@@ -27,15 +27,15 @@ function Login() {
 
       if (data.message == "Login successful") {
         if (data.user.role == "student") {
-          window.location.href = "/adminPage";
+          window.location.href = "/dashboard";
         } else if (data.user.role == "supervisor") {
-          window.location.href = "/adminPage";
+          window.location.href = "/displayTopicRequests";
         } else if (data.user.role == "cosupervisor") {
-          window.location.href = "/adminPage";
+          window.location.href = "/displayTopicRequests";
         } else if (data.user.role == "panelmember") {
-          window.location.href = "/adminPage";
+          window.location.href = "/panelDash";
         } else if (data.user.role == "admin") {
-          window.location.href = "/adminPage";
+          window.location.href = "/adminHomePage";
         }
       } else {
         console.log("Invalid user Name or password");

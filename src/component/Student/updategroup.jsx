@@ -69,16 +69,21 @@ const Updategroup = () => {
         alert(error.message);
       });
   };
-  console.log("hi", data.groupName);
+  
   return (
     <div>
       <main className={styles.signup_container1}>
         <div className={styles.card}>
           <div className={styles.signup_form_container5}>
             <div className={styles.right6}>
-              <form className={styles.form_container1} onSubmit={handleSubmit}>
-                <h1>Update Group Details</h1>
 
+
+
+              <form className={styles.form_container1} onSubmit={handleSubmit}>
+                <br></br>
+                <br></br>
+                <h1>Update Group Details</h1>
+                <br></br>
                 <label>Group Name</label>
                 <input
                   type="text"
@@ -171,7 +176,7 @@ const Updategroup = () => {
                 <br></br>
 
                 {error && <div className={styles.error_msg}>{error}</div>}
-                <button type="submit" className={styles.green_btn}>
+                <button type="submit" className={styles.green_btn1}>
                   Update
                 </button>
               </form>
@@ -180,6 +185,7 @@ const Updategroup = () => {
         </div>
       </main>
     </div>
+
   );
 };
 

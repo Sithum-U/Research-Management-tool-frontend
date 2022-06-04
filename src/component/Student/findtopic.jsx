@@ -12,12 +12,13 @@ import styles from "./styles.module.css";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
+import Header from "./S_FileUpload/Header";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: "relative",
   },
-  
+
   layout: {
     width: "auto",
     marginLeft: theme.spacing(2),
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
       width: "25ch",
     },
   },
- 
+
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
@@ -56,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Findtopic() {
 
- const  [findTopic, setfindTopic] = useState({reserchField :"",reserchTopic:"",supervisor:""})
+  const [findTopic, setfindTopic] = useState({ reserchField: "", reserchTopic: "", supervisor: "" })
 
 
   // const [findTopic, setfindTopic] = useState([]);
@@ -64,7 +65,7 @@ export default function Findtopic() {
   // const [reserchField, setreserchField] = useState("");
   // const [reserchTopic, setreserchTopic] = useState("");
   // const [supervisor, setsupervisor] = useState("");
-  
+
   // useEffect(() => {
   //   fetch("http://localhost:8000/findtopic/")
   //     .then((res) => res.json())
@@ -73,23 +74,39 @@ export default function Findtopic() {
   //       console.log(data);
   //     });
   // }, []);
+  const [reserchfields, setreserchfields] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // const url = 
     // const credentials = { reserchField, reserchTopic, supervisor}
     axios.post('http://localhost:8000/findtopic/', findTopic)
-    .then((res) => {
-      alert("Request Successfully send!");
-    })
-    .catch((error) => {
-      console.log(error.message);
-      alert(error.message);
-    });
-}
+      .then((res) => {
+        alert("Request Successfully send!");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        alert(error.message);
+      });
+  }
+
+  useEffect(() => {
+
+    fetch("http://localhost:8000/api/auth/getUser/")
+
+      .then((res) => res.json())
+      .then((data) => {
+        setreserchfields(data);
+        console.log("hi", data);
+      });
+  }, []);
+  // console.log(reserchfields);
+
   const classes = useStyles();
 
   return (
+    <div>
+    <Header/>
     <React.Fragment>
       <main className={styles.signup_container1}>
         <div className={styles.signup_form_container1}>
@@ -97,7 +114,7 @@ export default function Findtopic() {
             <center>
               <Container component="main" maxWidth="xs">
                 <Typography component="h1" variant="h5">
-                <br></br>
+                  <br></br>
                   <center><h2>Find a Reserch Topic</h2> </center><br></br>
                 </Typography>
                 <br />
@@ -105,30 +122,38 @@ export default function Findtopic() {
                   className={classes.form}
                   onSubmit={e => handleSubmit(e)}
                 >
+
                   <Grid container spacing={2}>
                     <Grid item xs={12}>
+
                       <Select
                         labelId="demo-simple-select-helper-label"
                         id="demo-simple-select-helper"
-                        label="Select a Reserch Field"
+                        label="Research Fields"
                         sx={{ width: 395 }}
-                       
+                        onChange={(e) =>
+                          setfindTopic ({
+                            ...findTopic,
+                            reserchField: e.target.value,
+                          })
+                        }
                       >
                         <MenuItem value="">
-                          <b>Reserch Field </b>
+                          <em>Research Fields</em>
                         </MenuItem>
+                        {reserchfields
+                          ? reserchfields.map((rf) => {
+                            return (
+                              <MenuItem value={rf.researchField}>
+                                {rf.researchField}
+                              </MenuItem>
+                            );
+                          })
+                          : null}
 
-                        {/* {student
-                          ? student.map((hot) => {
-                              return (
-                                <MenuItem value={hot.hotelName}>
-                                  {hot.hotelName}
-                                </MenuItem>
-                              );
-                            })
-                          : null} */}
                       </Select>
-                    </Grid>   
+
+                    </Grid>
                     <Grid item xs={12}>
                       <TextField
                         variant="outlined"
@@ -139,47 +164,57 @@ export default function Findtopic() {
                         name="Enter Reserch Topic"
                         autoComplete="reserchTopic"
                         autoFocus
-                        onChange={e => setfindTopic({ ...findTopic,reserchTopic:e.target.value })} 
+                        onChange={e => setfindTopic({ ...findTopic, reserchTopic: e.target.value })}
                       />
                     </Grid>
 
                     <Grid item xs={12}>
+
                       <Select
                         labelId="demo-simple-select-helper-label"
                         id="demo-simple-select-helper"
-                        label="Select a Supervisor"
+                        label="Research Fields"
                         sx={{ width: 395 }}
-                        
+                        onChange={(e) =>
+                          setfindTopic ({
+                            ...findTopic,
+                            supervisor: e.target.value,
+                          })
+                        }
                       >
                         <MenuItem value="">
-                          <b> Select a Supervisor </b>
+                          <em>Supervisor</em>
                         </MenuItem>
-                        {/* {student
-                          ? student.map((hot) => {
-                              return (
-                                <MenuItem value={hot.hotelName}>
-                                  {hot.hotelName}
-                                </MenuItem>
-                              );
-                            })
-                          : null} */}
+                        {reserchfields
+                          ? reserchfields.map((ss) => {
+                            return ss.role === "supervisor"?(
+                              <MenuItem value={ss.username}>
+                                {ss.username}
+                              </MenuItem>
+                            ): null;
+                          })
+                          : null}
+
                       </Select>
+
                     </Grid>
 
 
                   </Grid>
                   <br></br>
-       
-                  <Link to="/create">
-                    <Button type="button"
-              variant="outline-info"
-              className={styles.green_btn}
-            >Back</Button>
-                  </Link>
-                  
-                  <Button type="submit" className={styles.green_btn}>
+                  <button type="submit" className={styles.green_btn1}>
                     Send a Request to Supervisor
-                  </Button>
+                  </button>
+
+                  <br></br>
+                  <Link to="/create">
+                    <button type="submit" className={styles.green_btn3}>
+                      Back
+                    </button>
+
+                  </Link>
+
+
 
                   {/* </Link> */}
                 </form>
@@ -187,7 +222,9 @@ export default function Findtopic() {
             </center>
           </div>
         </div>
+        
       </main>
     </React.Fragment>
+    </div>
   );
 }
