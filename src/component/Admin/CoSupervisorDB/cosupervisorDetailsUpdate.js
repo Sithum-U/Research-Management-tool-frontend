@@ -43,7 +43,7 @@ const updateDocEvaluation = () => {
       .put(url, credentials)
       .then((res) => {
         alert("Panel Member Updated Successfully!");
-        window.location = "/panelMemberDetails";
+        window.location = "/co-supervisorDetails";
       })
       .catch((error) => {
         console.log(error.message);

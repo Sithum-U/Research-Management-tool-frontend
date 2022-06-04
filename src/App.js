@@ -3,6 +3,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Signup from "./component/Auth/SignUp/index";
 import Login from "./component/Auth/Login/index.jsx";
 import AdminPage from "./component/Admin/AdminPage/AdminPage";
+import AdminHomePage from "./component/Admin/AdminPage/AdminHomePage";
 // import Sidebar from "./component/Admin/sidebar/sidebar";
 import Upload from "./component/Admin/pages/Upload";
 import Home from "./component/Admin/pages/Home";
@@ -28,7 +29,9 @@ import Mail from "./component/panel_member/Mail";
 import ViewPresentationMarks from "./component/panel_member/viewPresentationMarks";
 import AddDocumentMarks from "./component/supervisor/documentEvaluation";
 import DisplayDocumentMarks from "./component/supervisor/displayDocMraks";
-import DocEvaluationUpdate from "./component/supervisor/updateDocMarks"
+import DocEvaluationUpdate from "./component/supervisor/updateDocMarks";
+import DocStdEvaluationUpdate from "./component/supervisor/displayStdDocMarks";
+import AllocatePanelMembers from "./component/Admin/AllocatePanelMembers";
 import "./App.css";
 
 import AppRouter from "../src/component/Admin/FileUpload/AppRouter";
@@ -43,7 +46,9 @@ function App() {
       <Routes>
         <Route path="/signup" exact element={<Signup />} />
         <Route path="/login" exact element={<Login />} />
+        <Route path="/" exact element={<Login />} />
         <Route path="/adminPage" exact element={<AdminPage />} />
+        <Route path="/adminHomePage" exact element={<AdminHomePage />} />
         {/* <Route path="/sidebar" exact element={<Sidebar />} /> */}
         {/* <Route path="/upload" exact element={<Upload />} /> */}
         {/* <Route path="/" exact element={<Home />} /> */}
@@ -74,15 +79,21 @@ function App() {
           exact
           element={<CoSupervisorDetailsUpdate />}
         />
-        <Route path="/panelMemberDetailsUpdate/:id" exact element={<PanelMemberUpdate />}
+        <Route
+          path="/panelMemberDetailsUpdate/:id"
+          exact
+          element={<PanelMemberUpdate />}
         />
-        <Route path="/studentDetailsUpdate/:id" exact element={<StudentDetailsUpdate />}
+        <Route
+          path="/studentDetailsUpdate/:id"
+          exact
+          element={<StudentDetailsUpdate />}
         />
-        
+
         <Route path="/uploadDocuments" exact element={<AppRouter />} />
         <Route path="/stduploadDoc" exact element={<AppRouters />} />
         <Route path="/documentlist" exact element={<FilesList />} />
-      
+
         <Route path="/update/:id" exact element={<Updategroup />} />
         <Route path="/doc" exact element={<Docsubmit />} />
         <Route path="/find" exact element={<Findtopic />} />
@@ -94,10 +105,32 @@ function App() {
         <Route path="/presentation" exact element={<Presentation />} />
         <Route path="/panelDash" exact element={<PanelDash />} />
         <Route path="/mail" exact element={<Mail />} />
-        <Route path="/viewpresentationmarks" exact element={<ViewPresentationMarks />} />
+        <Route
+          path="/viewpresentationmarks"
+          exact
+          element={<ViewPresentationMarks />}
+        />
         <Route path="/add" exact element={<AddDocumentMarks />} />
-        <Route path="/displayDocMarks" exact element={<DisplayDocumentMarks />} />
-        <Route path="/updateDocMarks/:id" exact element={<DocEvaluationUpdate />} />
+        <Route
+          path="/displayDocMarks"
+          exact
+          element={<DisplayDocumentMarks />}
+        />
+        <Route
+          path="/updateDocMarks/:id"
+          exact
+          element={<DocEvaluationUpdate />}
+        />
+        <Route
+          path="/dispalyStdDocMarks"
+          exact
+          element={<DocStdEvaluationUpdate />}
+        />
+        <Route
+          path="/allocatePanelMembers"
+          exact
+          element={<AllocatePanelMembers />}
+        />
       </Routes>
     </BrowserRouter>
   );
