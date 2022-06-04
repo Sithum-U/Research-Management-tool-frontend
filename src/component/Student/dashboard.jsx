@@ -54,7 +54,7 @@ const Dashboard = () => {
               </button>
             </Link>
             <br></br>
-            <Link to="#">
+            <Link to="/documentlist">
               <button
                 type="button"
                 variant="outline-info"
@@ -64,13 +64,23 @@ const Dashboard = () => {
               </button>
             </Link>
             <br></br>
-            <Link to="#">
+            <Link to="/viewpresentationmarks">
               <button
                 type="button"
                 variant="outline-info"
                 className={styles.green_btn7}
               >
                 View Presentation Marks
+              </button>
+            </Link>
+            <br></br>
+            <Link to="/dispalyStdDocMarks">
+              <button
+                type="button"
+                variant="outline-info"
+                className={styles.green_btn1}
+              >
+                View Document Marks
               </button>
             </Link>
             <br></br>

@@ -89,7 +89,7 @@ const updateDocEvaluation = () => {
 
           {error && <div className={styles.error_msg}>{error}</div>}
           <button type="submit" className={styles.green_btn}>
-            Update Student
+            Update Panel Member
           </button>
         </form>
       </div>

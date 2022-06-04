@@ -42,53 +42,59 @@ const FilesList = () => {
   };
 
   return (
-    <div>
-      <AdminPage />
-
-      <div className="container">
-        <div className="main-content">
-          <div className="files-container">
-            {errorMsg && <p className="errorMsg">{errorMsg}</p>}
-            <h1>Presentation/ Doc Tempaltes and Marking Schemas </h1>
-            <table className="files-table">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>Download File</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filesList.length > 0 ? (
-                  filesList.map(
-                    ({ _id, title, description, file_path, file_mimetype }) => (
-                      <tr key={_id}>
-                        <td className="file-title">{title}</td>
-                        <td className="file-description">{description}</td>
-                        <td>
-                          <button
-                            className="button"
-                            href="#/"
-                            onClick={() =>
-                              downloadFile(_id, file_path, file_mimetype)
-                            }
-                          >
-                            Download
-                          </button>
-                        </td>
-                      </tr>
-                    )
+    <div className="container">
+      <div className="main-content">
+        <div className="files-container">
+          {errorMsg && <p className="errorMsg">{errorMsg}</p>}
+          <h1>Presentation/ Doc Tempaltes and Marking Schemas </h1>
+          <table className="files-table">
+            <thead>
+              <tr>
+                <th>
+                  <center>Title</center>
+                </th>
+                <th>
+                  <center>Description</center>
+                </th>
+                <th>
+                  <center>Download File</center>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {filesList.length > 0 ? (
+                filesList.map(
+                  ({ _id, title, description, file_path, file_mimetype }) => (
+                    <tr key={_id}>
+                      <td className="file-title" align="center">
+                        {title}
+                      </td>
+                      <td className="file-description" align="center">
+                        {description}
+                      </td>
+                      <td>
+                        <button
+                          className="button"
+                          href="#/"
+                          onClick={() =>
+                            downloadFile(_id, file_path, file_mimetype)
+                          }
+                        >
+                          Download
+                        </button>
+                      </td>
+                    </tr>
                   )
-                ) : (
-                  <tr>
-                    <td colSpan={3} style={{ fontWeight: "300" }}>
-                      No files found. Please add some.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+                )
+              ) : (
+                <tr>
+                  <td colSpan={3} style={{ fontWeight: "300" }}>
+                    No files found. Please add some.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
