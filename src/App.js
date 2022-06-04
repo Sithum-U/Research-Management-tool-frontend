@@ -32,6 +32,7 @@ import DocEvaluationUpdate from "./component/supervisor/updateDocMarks"
 import "./App.css";
 
 import AppRouter from "../src/component/Admin/FileUpload/AppRouter";
+import AppRouters from "../src/component/Student/S_FileUpload/AppRouter";
 import Header from "../src/component/Admin/FileUpload/Header";
 import FilesList from "../src/component/Admin/FileUpload/FilesList";
 
@@ -79,6 +80,7 @@ function App() {
         />
         
         <Route path="/uploadDocuments" exact element={<AppRouter />} />
+        <Route path="/stduploadDoc" exact element={<AppRouters />} />
         <Route path="/documentlist" exact element={<FilesList />} />
       
         <Route path="/update/:id" exact element={<Updategroup />} />

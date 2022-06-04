@@ -11,6 +11,9 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import Header from "./S_FileUpload/Header";
+import { header } from "koa/lib/response";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -112,6 +115,8 @@ export default function Create() {
   // }, []);
 
   return (
+    <div>
+    <Header/>
     <React.Fragment>
       <main className={styles.signup_container1}>
         <div className={styles.signup_form_container3}>
@@ -146,7 +151,7 @@ export default function Create() {
 
                     <div className="container">
                       <br></br>
-                      <h5 className="group">Group members</h5>
+                      <h5 className="group"><u>Group members</u></h5>
                       <br></br>
 
                       <table>
@@ -160,7 +165,7 @@ export default function Create() {
                         <tbody>
                           {
                             <tr>
-                              <td>Member1 (Leader)</td>
+                              <td><b>Member1 (Leader)</b></td>
                               <td><TextField
                                 variant="outlined"
                                 required
@@ -192,7 +197,7 @@ export default function Create() {
                         <tbody>
                           {
                             <tr>
-                              <td>Member2</td>
+                              <td><b>Member2</b></td>
                               <td><TextField
                                 variant="outlined"
                                 required
@@ -224,7 +229,7 @@ export default function Create() {
                         <tbody>
                           {
                             <tr>
-                              <td>Member3</td>
+                              <td><b>Member3</b></td>
                               <td><TextField
                                 variant="outlined"
                                 required
@@ -255,7 +260,7 @@ export default function Create() {
                         </tbody>
                         <tbody>
                           {<tr>
-                            <td>Member4</td>
+                            <td><b>Member4</b></td>
                             <td><TextField
                               variant="outlined"
                               required
@@ -286,27 +291,37 @@ export default function Create() {
                           </tr>
                           }
                         </tbody>
-                      </table> <br></br>
+                      </table> <br></br><br></br>
                     </div>
                   </Grid>
-
+                  <button type="submit" className={styles.green_btn8}>
+                  CREATE GROUP
+                </button>
+                <br></br>
                   <Link to="/dashboard">
-                    <Button className={styles.green_btn6}>Back</Button>
-                  </Link>
-                  <Button type="submit" className={styles.green_btn6}>Create Group</Button>
-                  <Link to="/view">
-                    <Button className={styles.green_btn6}>Next</Button>
+                  <button type="submit" className={styles.green_btn3}>
+                  Back        
+                </button>
                   </Link>
 
+                  <Link to="/view">
+                  <button type="submit" className={styles.green_btn3}>
+                  Next
+                </button>
+                    {/* <Button className={styles.green_btn}>Next</Button> */}
+                  </Link>
+                  
 
 
 
                 </form>
               </Container>
             </center>
+            
           </div>
         </div>
       </main>
-    </React.Fragment>
+    </React.Fragment>\
+    </div>
   );
 }
