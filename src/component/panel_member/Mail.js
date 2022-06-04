@@ -47,7 +47,7 @@ function Mail() {
                                 )}
                             </MDBCardText>
                         </MDBCardBody>
-                    </MDBCard><br/><br/><br/><br/><br/><br/><br/>
+                    </MDBCard><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 </div>
             </div>
             <Footer/>
