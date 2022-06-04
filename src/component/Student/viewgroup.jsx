@@ -25,6 +25,7 @@ import { Link } from "react-router-dom";
 import SoloAlert from "soloalert";
 import axios from "axios";
 import { MDBCol } from "mdbreact";
+import Header from "./S_FileUpload/Header";
 
 
 const columns = [
@@ -230,7 +231,9 @@ export default function GroupDetails() {
 
   return (
     <div>
-      <main className={styles.signup_container1}>
+    <Header/>
+    <div>
+      <main className={styles.signup_container3}>
         <div className={styles.card}>
           <div className={styles.signup_form_container5}>
             {/* <div className={styles.right6}> */}
@@ -276,16 +279,23 @@ export default function GroupDetails() {
                           <TableCell>
 
 
-                            <Link
-                              to={"/update/" + sup._id}
-                              type="submit"
-                              variant="primary"
-                              class="green_btn6"
-                            >
-                              <i class="fa fa-trash"></i> UPDATE
+                            <Link to={"/update/" + sup._id}>
+                              <button type="submit" className={styles.green_btn5}>
+                                Update
+                              </button>
                             </Link>
+                            <br></br>
+                            <br></br>
 
-                            <button
+                            <button type="submit" className={styles.green_btn} variant="primary" onClick={(e) => {
+                              delet(sup._id);
+                            }}
+                            >
+                              <i class="fa fa-trash"></i> DELETE
+                            </button>
+
+
+                            {/* <button
                               type="submit"
                               class="green_btn6"
                               variant="primary"
@@ -294,19 +304,29 @@ export default function GroupDetails() {
                               }}
                             >
                               <i class="fa fa-trash"></i> DELETE
-                            </button>
+                            </button> */}
                           </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
                   </Table>
+                  <br></br>
+                  <Link to="/create">
+                  <button type="submit" className={styles.green_btn9}>
+                  Back
+                </button>
+                    {/* <Button className={styles.green_btn}>Next</Button> */}
+                  </Link>
                 </TableContainer>
+                
               </Paper>
+              
             </div>
           </div>
         </div>
 
       </main>
+    </div>
     </div>
 
   );

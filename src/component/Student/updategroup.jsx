@@ -69,13 +69,14 @@ const Updategroup = () => {
         alert(error.message);
       });
   };
-  console.log("hi", data.groupName);
+  
   return (
     <div>
       <main className={styles.signup_container1}>
         <div className={styles.card}>
           <div className={styles.signup_form_container5}>
             <div className={styles.right6}>
+
 
 
               <form className={styles.form_container1} onSubmit={handleSubmit}>
@@ -175,7 +176,7 @@ const Updategroup = () => {
                 <br></br>
 
                 {error && <div className={styles.error_msg}>{error}</div>}
-                <button type="submit" className={styles.green_btn}>
+                <button type="submit" className={styles.green_btn1}>
                   Update
                 </button>
               </form>
