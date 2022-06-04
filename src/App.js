@@ -28,12 +28,16 @@ import Mail from "./component/panel_member/Mail";
 import ViewPresentationMarks from "./component/panel_member/viewPresentationMarks";
 import AddDocumentMarks from "./component/supervisor/documentEvaluation";
 import DisplayDocumentMarks from "./component/supervisor/displayDocMraks";
-import DocEvaluationUpdate from "./component/supervisor/updateDocMarks"
+import DocEvaluationUpdate from "./component/supervisor/updateDocMarks";
+import DocStdEvaluationUpdate from "./component/supervisor/displayStdDocMarks";
 import "./App.css";
 
 import AppRouter from "../src/component/Admin/FileUpload/AppRouter";
 import Header from "../src/component/Admin/FileUpload/Header";
 import FilesList from "../src/component/Admin/FileUpload/FilesList";
+// import ChatDisplay from "../src/component/supervisor/chat/chat";
+
+import DisplayRequests from "./component/supervisor/displayRequests";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -96,6 +100,10 @@ function App() {
         <Route path="/add" exact element={<AddDocumentMarks />} />
         <Route path="/displayDocMarks" exact element={<DisplayDocumentMarks />} />
         <Route path="/updateDocMarks/:id" exact element={<DocEvaluationUpdate />} />
+        <Route path="/dispalyStdDocMarks" exact element={<DocStdEvaluationUpdate />} />
+
+        {/* <Route path="/chat" exact element={<ChatDisplay />} /> */}
+        <Route path="/displayTopicRequests" exact element={<DisplayRequests />} />
       </Routes>
     </BrowserRouter>
   );

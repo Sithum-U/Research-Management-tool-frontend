@@ -3,6 +3,9 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 
+import Footer from "../Layout/Footer";
+import Header from "../Layout/HeaderH";
+
 const AddDocumentMarks = () => {
   const [data, setData] = useState({
     studentGrp: "",
@@ -38,6 +41,8 @@ const AddDocumentMarks = () => {
   };
 
   return (
+    <div>
+    <Header />
     <div className={styles.signup_container}>
       <div className={styles.signup_form_container}>
         <div className={styles.right}>
@@ -105,6 +110,8 @@ const AddDocumentMarks = () => {
           </form>
         </div>
       </div>
+    </div>
+    <Footer />
     </div>
   );
 };

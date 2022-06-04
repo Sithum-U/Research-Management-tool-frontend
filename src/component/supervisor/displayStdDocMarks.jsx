@@ -22,7 +22,6 @@ import "./styles.css";
 import styles from "./styles.module.css";
 
 import Footer from "../Layout/Footer";
-import Header from "../Layout/HeaderH";
 
 import { Button, Modal } from 'react-bootstrap';
 // import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBCardHeader } from 'mdb-react-ui-kit';
@@ -102,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BranchDetails() {
+export default function MarkssTable() {
   const [docMarks, setDocMarks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filtered, setfiltered] = useState([]);
@@ -116,54 +115,6 @@ export default function BranchDetails() {
       });
   }, []);
 
-  async function delet(id) {
-    SoloAlert.confirm({
-      title: "Confirm Delete",
-      body: "Are you sure",
-      theme: "dark",
-      useTransparency: true,
-      onOk: async function () {
-        try {
-          const result = await (
-            await axios.delete(`http://localhost:8000/api/docEvaluation/${id}`)
-          ).status;
-          console.log(result);
-
-          if (result === 200) {
-            SoloAlert.alert({
-              title: "Welcome!",
-              body: "Deletion is successful",
-              icon: "success",
-              theme: "dark",
-              useTransparency: true,
-              onOk: function () {
-                window.location = "/displayDocMarks";
-              },
-            });
-          }
-        } catch (err) {
-          SoloAlert.alert({
-            title: "Oops!",
-            body: "Something went wrong",
-            icon: "error",
-            theme: "dark",
-            useTransparency: true,
-            onOk: function () {},
-          });
-        }
-      },
-      onCancel: function () {
-        SoloAlert.alert({
-          title: "Oops!",
-          body: "You canceled delete request",
-          icon: "warning",
-          theme: "dark",
-          useTransparency: true,
-          onOk: function () {},
-        });
-      },
-    });
-  }
 
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
@@ -200,8 +151,8 @@ export default function BranchDetails() {
   });
 
   return (
+      <div>
     <div>
-    <Header /><br></br>
       {/* <div className={classes.root2}> */}
       {/* <div class="topnav">
         <a className="name" href="#home">
@@ -218,12 +169,6 @@ export default function BranchDetails() {
         <h1 variant="h4" gutterBottom>
           Document Evaluation Details of Student Groups
         </h1>
-        <Link to="/add">
-          <button type="button" className={styles.green_btn}>
-            Add Evaluation
-          </button>
-          <hr />
-        </Link>
         <div class="buttonn">
           <br></br>
         </div>
@@ -277,26 +222,6 @@ export default function BranchDetails() {
                       <TableCell>{docMarks.plagiarism}</TableCell>
                       <TableCell>{docMarks.total}</TableCell>
                       <TableCell>{docMarks.comments}</TableCell>
-                      <TableCell>
-                        <Link
-                          to={"/updateDocMarks/" + docMarks._id}
-                          type="submit"
-                          className={styles.button}
-                        >
-                          <i class="fa fa-trash"></i> UPDATE
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <Button
-                          type="submit"
-                          variant="danger"
-                          onClick={(e) => {
-                            delet(docMarks._id);
-                          }}
-                        >
-                          <i class="fa fa-trash"></i> DELETE
-                        </Button>
-                      </TableCell>
                     </TableRow>
                   ))}
               </TableBody>
@@ -304,7 +229,8 @@ export default function BranchDetails() {
           </TableContainer>
         </Paper>
       </center>
-      <Footer />
+    </div>
+    <Footer />
     </div>
   );
 }
