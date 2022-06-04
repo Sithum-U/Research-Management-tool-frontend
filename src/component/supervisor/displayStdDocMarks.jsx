@@ -21,7 +21,11 @@ import { MDBCol } from "mdbreact";
 import "./styles.css";
 import styles from "./styles.module.css";
 
-import { Button, Modal } from "react-bootstrap";
+
+import Footer from "../Layout/Footer";
+
+import { Button, Modal } from 'react-bootstrap';
+
 // import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBCardHeader } from 'mdb-react-ui-kit';
 
 const columns = [
@@ -62,7 +66,7 @@ const columns = [
     label: "Comments",
     minWidth: 170,
     align: "left",
-  },
+  }
 ];
 
 function MarksTable(name, code, population, size) {
@@ -148,6 +152,7 @@ export default function MarkssTable() {
   });
 
   return (
+      <div>
     <div>
       {/* <div className={classes.root2}> */}
       {/* <div class="topnav">
@@ -226,5 +231,8 @@ export default function MarkssTable() {
         </Paper>
       </center>
     </div>
+    <Footer />
+    </div>
+
   );
 }

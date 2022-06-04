@@ -32,12 +32,16 @@ import DisplayDocumentMarks from "./component/supervisor/displayDocMraks";
 import DocEvaluationUpdate from "./component/supervisor/updateDocMarks";
 import DocStdEvaluationUpdate from "./component/supervisor/displayStdDocMarks";
 import AllocatePanelMembers from "./component/Admin/AllocatePanelMembers";
+
 import "./App.css";
 
 import AppRouter from "../src/component/Admin/FileUpload/AppRouter";
 import AppRouters from "../src/component/Student/S_FileUpload/AppRouter";
 import Header from "../src/component/Admin/FileUpload/Header";
 import FilesList from "../src/component/Admin/FileUpload/FilesList";
+// import ChatDisplay from "../src/component/supervisor/chat/chat";
+
+import DisplayRequests from "./component/supervisor/displayRequests";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -111,26 +115,18 @@ function App() {
           element={<ViewPresentationMarks />}
         />
         <Route path="/add" exact element={<AddDocumentMarks />} />
-        <Route
-          path="/displayDocMarks"
-          exact
-          element={<DisplayDocumentMarks />}
-        />
-        <Route
-          path="/updateDocMarks/:id"
-          exact
-          element={<DocEvaluationUpdate />}
-        />
-        <Route
-          path="/dispalyStdDocMarks"
-          exact
-          element={<DocStdEvaluationUpdate />}
-        />
+        <Route path="/displayDocMarks" exact element={<DisplayDocumentMarks />} />
+        <Route path="/updateDocMarks/:id" exact element={<DocEvaluationUpdate />} />
+        <Route path="/dispalyStdDocMarks" exact element={<DocStdEvaluationUpdate />} />
+
+        {/* <Route path="/chat" exact element={<ChatDisplay />} /> */}
+        <Route path="/displayTopicRequests" exact element={<DisplayRequests />} />
         <Route
           path="/allocatePanelMembers"
           exact
           element={<AllocatePanelMembers />}
         />
+
       </Routes>
     </BrowserRouter>
   );

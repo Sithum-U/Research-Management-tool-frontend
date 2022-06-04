@@ -116,55 +116,6 @@ export default function BranchDetails() {
       });
   }, []);
 
-  async function delet(id) {
-    SoloAlert.confirm({
-      title: "Confirm Delete",
-      body: "Are you sure",
-      theme: "dark",
-      useTransparency: true,
-      onOk: async function () {
-        try {
-          const result = await (
-            await axios.delete(`http://localhost:8000/api/docEvaluation/${id}`)
-          ).status;
-          console.log(result);
-
-          if (result === 200) {
-            SoloAlert.alert({
-              title: "Welcome!",
-              body: "Deletion is successful",
-              icon: "success",
-              theme: "dark",
-              useTransparency: true,
-              onOk: function () {
-                window.location = "/displayDocMarks";
-              },
-            });
-          }
-        } catch (err) {
-          SoloAlert.alert({
-            title: "Oops!",
-            body: "Something went wrong",
-            icon: "error",
-            theme: "dark",
-            useTransparency: true,
-            onOk: function () {},
-          });
-        }
-      },
-      onCancel: function () {
-        SoloAlert.alert({
-          title: "Oops!",
-          body: "You canceled delete request",
-          icon: "warning",
-          theme: "dark",
-          useTransparency: true,
-          onOk: function () {},
-        });
-      },
-    });
-  }
-
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -199,6 +150,68 @@ export default function BranchDetails() {
     },
   });
 
+  async function accept() {
+    SoloAlert.confirm({
+      title: "Confirm Accept",
+      body: "Are you sure",
+      theme: "dark",
+      useTransparency: true,
+      onOk: async function () {
+            SoloAlert.alert({
+              title: "Welcome!",
+              body: "Acceptance is successful",
+              icon: "success",
+              theme: "dark",
+              useTransparency: true,
+              onOk: function () {
+                window.location = "/displayDocMarks";
+              },
+            })
+      },
+      onCancel: function () {
+        SoloAlert.alert({
+          title: "Oops!",
+          body: "You canceled delete request",
+          icon: "warning",
+          theme: "dark",
+          useTransparency: true,
+          onOk: function () {},
+        });
+      },
+    });
+  }
+
+  async function reject() {
+    SoloAlert.confirm({
+      title: "Confirm Rejection",
+      body: "Are you sure",
+      theme: "dark",
+      useTransparency: true,
+      onOk: async function () {
+            SoloAlert.alert({
+              title: "Welcome!",
+              body: "Rejection is successful",
+              icon: "success",
+              theme: "dark",
+              useTransparency: true,
+              onOk: function () {
+                window.location = "/displayDocMarks";
+              },
+            })
+      },
+      onCancel: function () {
+        SoloAlert.alert({
+          title: "Oops!",
+          body: "You canceled delete request",
+          icon: "warning",
+          theme: "dark",
+          useTransparency: true,
+          onOk: function () {},
+        });
+      },
+    });
+  }
+
   return (
     <div>
     <Header /><br></br>
@@ -216,17 +229,8 @@ export default function BranchDetails() {
       </div> */}
       <center>
         <h1 variant="h4" gutterBottom>
-          Document Evaluation Details of Student Groups
+          Topic requests from Students
         </h1>
-        <Link to="/add">
-          <button type="button" className={styles.green_btn}>
-            Add Evaluation
-          </button>
-          <hr />
-        </Link>
-        <div class="buttonn">
-          <br></br>
-        </div>
         <MDBCol md="6">
           <input
             class="form-control"
@@ -245,60 +249,96 @@ export default function BranchDetails() {
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
-                  {columns.map((column) => (
-                    <TableCell
-                      key={column.id}
-                      align={column.align}
-                      style={{ minWidth: column.minWidth }}
-                    >
-                      {column.label}
-                    </TableCell>
-                  ))}
+                    <TableCell>Student Group</TableCell>
+                    <TableCell>Research Field</TableCell>
+                    <TableCell>Research Topic</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {docMarks
-                  .filter((value) => {
-                    if (searchTerm === "") {
-                      return value;
-                    } else if (
-                      value.studentGrp
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase())
-                    ) {
-                      return value;
-                    }
-                  })
-                  .map((docMarks, i) => (
-                    <TableRow key={docMarks._id}>
-                      <TableCell>{docMarks.studentGrp}</TableCell>
-                      <TableCell>{docMarks.completness}</TableCell>
-                      <TableCell>{docMarks.corectness}</TableCell>
-                      <TableCell>{docMarks.plagiarism}</TableCell>
-                      <TableCell>{docMarks.total}</TableCell>
-                      <TableCell>{docMarks.comments}</TableCell>
+                    <TableRow>
+                      <TableCell>G4</TableCell>
+                      <TableCell>IOT</TableCell>
+                      <TableCell>DOM</TableCell>
                       <TableCell>
-                        <Link
-                          to={"/updateDocMarks/" + docMarks._id}
+                      <Button
+                      className={styles.button}
                           type="submit"
-                          className={styles.button}
+                          onClick={(e) => {
+                            accept();
+                          }}
                         >
-                          <i class="fa fa-trash"></i> UPDATE
-                        </Link>
+                          <i class="fa fa-trash"></i> Accept
+                        </Button>
                       </TableCell>
                       <TableCell>
                         <Button
                           type="submit"
                           variant="danger"
                           onClick={(e) => {
-                            delet(docMarks._id);
+                            reject();
                           }}
                         >
-                          <i class="fa fa-trash"></i> DELETE
+                          <i class="fa fa-trash"></i> Reject
                         </Button>
                       </TableCell>
                     </TableRow>
-                  ))}
+
+                    <TableRow>
+                      <TableCell>G5</TableCell>
+                      <TableCell>Maschine Learning</TableCell>
+                      <TableCell>AI</TableCell>
+                      <TableCell>
+                      <Button
+                      className={styles.button}
+                          type="submit"
+                          onClick={(e) => {
+                            accept();
+                          }}
+                        >
+                          <i class="fa fa-trash"></i> Accept
+                        </Button>
+                      </TableCell>
+                      <TableCell>
+                        <Button
+                          type="submit"
+                          variant="danger"
+                          onClick={(e) => {
+                            reject();
+                          }}
+                        >
+                          <i class="fa fa-trash"></i> Reject
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+
+                    <TableRow>
+                      <TableCell>G6</TableCell>
+                      <TableCell>Web Development</TableCell>
+                      <TableCell>React</TableCell>
+                      <TableCell>
+                      <Button
+                      className={styles.button}
+                          type="submit"
+                          onClick={(e) => {
+                            accept();
+                          }}
+                        >
+                          <i class="fa fa-trash"></i> Accept
+                        </Button>
+                      </TableCell>
+                      <TableCell>
+                        <Button
+                          type="submit"
+                          variant="danger"
+                          onClick={(e) => {
+                            reject();
+                          }}
+                        >
+                          <i class="fa fa-trash"></i> Reject
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+
               </TableBody>
             </Table>
           </TableContainer>

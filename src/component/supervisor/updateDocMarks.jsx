@@ -3,6 +3,9 @@ import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import styles from "./styles.module.css";
 
+import Footer from "../Layout/Footer";
+import Header from "../Layout/HeaderH";
+
 const updateDocEvaluation = () => {
   const [updateDocDetails, setUpdateDocDetails] = useState([]);
   const [error, setError] = useState("");
@@ -56,6 +59,8 @@ useEffect(() => {
   };
 
   return (
+    <div>
+    <Header />
     <div className={styles.signup_container}>
       <div className={styles.update_form_container}>
         <div className={styles.right}>
@@ -128,6 +133,8 @@ useEffect(() => {
           </form>
         </div>
       </div>
+    </div>
+    <Footer />
     </div>
   );
 };
